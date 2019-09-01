@@ -1,4 +1,5 @@
 import json
+import random
 import socket
 import threading
 import time
@@ -12,7 +13,7 @@ class EventError(Exception):
 
 
 class GameEvent:
-    def __init__(self, source, target=None, action=None, args=None, raw=None):
+    def __init__(self, source, action=None, target=None, args=None, raw=None):
         self.source = source
 
         if target is None:
@@ -72,8 +73,9 @@ class GameEvent:
                 self.args[a] = self.args[a].lower()
 
             if len(self.args) != len(SERVER_COMMANDS[self.action]):
-                raise EventError("Invalid number of arguments given. {} expected, {} given.".format(len(SERVER_COMMANDS[self.action]),
-                                                                                                    len(self.args))
+                raise EventError("Invalid number of arguments given. {} expected, {} given.".format(
+                    len(SERVER_COMMANDS[self.action]),
+                    len(self.args))
                                  )
 
         self.time = time.time()
@@ -178,27 +180,18 @@ class ConnectionManager:
 
 
 class GameObject:
-    def __init__(self, name, obj_type, colour, pos, facing):
+    def __init__(self, name, colour, pos, facing, creator="console"):
+        assert colour in COLOURS
         self.name = name
-        self.obj_type = obj_type
         self.colour = colour
         self.pos = pos
         self.facing = facing
         self.pushes = False
+        self.can_be_pushed = False
         self.destroyed = False
         self.hidden = False
-        if self.obj_type == "ship":
-            self.reactor = GameObjectSystem("reactor", 0, 24, 12)
-            self.systems = {}
-        else:
-            self.reactor = None
-            self.systems = None
-        self.in_overload = False
-        self.overload_trigger_time = 0
-        self.overload_cool_down_time = 10
-        self.message = ""
-        self.message_recv_time = 0
-        self.message_display_time = 10
+        self.leaves_trail = False
+        self.creator = creator
 
     def move(self, direction):
         if direction == "f":
@@ -223,6 +216,42 @@ class GameObject:
             direction = DIRECTIONS[(DIRECTIONS.index(self.facing) + 1) % len(DIRECTIONS)]
         self.facing = direction
 
+    def hide(self):
+        self.hidden = True
+
+    def show(self):
+        self.hidden = False
+
+    def destroy(self, leave_debris=False):
+        if type(leave_debris) == str:
+            if not (leave_debris.lower() in ("true", "false")):
+                raise TypeError("'{}' cannot be converted to bool.".format(leave_debris))
+            leave_debris = leave_debris.lower() == "true"
+        self.destroyed = True
+        self.hidden = not leave_debris
+
+    def tick(self):
+        # All per/tick updates to happen here.
+        pass
+
+
+class Ship(GameObject):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.reactor = ShipSystem("reactor", 0, 24, 12)
+        self.systems = {}
+
+        self.in_overload = False
+        self.overload_trigger_time = 0
+        self.overload_cool_down_time = 10
+        self.message = None
+        self.message_recv_time = 0
+        self.message_display_time = 10
+        self.leaves_trail = True
+        self.pushes = True
+        self.can_be_pushed = True
+
     def set_stat(self, system_name, change):
         if (self.systems is None) or not (system_name in self.systems.keys()):
             return
@@ -240,36 +269,33 @@ class GameObject:
         else:
             pass
 
-    def trigger_overload(self):
-        self.in_overload = True
-        self.overload_trigger_time = time.time()
-
-    def hide(self):
-        self.hidden = True
-
-    def show(self):
-        self.hidden = False
-
-    def destroy(self):
-        self.hidden = True
-        self.destroyed = True
+    def add_system(self, system):
+        self.systems[system.name] = system
 
     def send_msg(self, message):
         self.message = message
         self.message_recv_time = time.time()
 
+    def trigger_overload(self):
+        self.in_overload = True
+        self.overload_trigger_time = time.time()
+
+    def spawn_trail(self):
+        pass
+
     def tick(self):
-        # All per/tick updates to happen here.
+        super().tick()
 
         # Check overload state.
         if time.time() > self.overload_trigger_time + self.overload_cool_down_time:
             self.in_overload = False
 
-    def add_system(self, system):
-        self.systems[system.name] = system
+        # Check if message should still exist.
+        if self.message is not None and (self.message_recv_time + self.message_display_time) < time.time():
+            self.message = None
 
 
-class GameObjectSystem:
+class ShipSystem:
     def __init__(self, name, min_level=0, max_level=8, default=0, reset_action="default"):
         self.name = name
         self.min_level = min_level
@@ -304,6 +330,17 @@ class GameObjectSystem:
         return self.level - val >= self.min_level
 
 
+class Trail(GameObject):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+
+
+    def tick(self):
+        super().tick()
+        self.
+
+
 class Game:
     def __init__(self):
         self.connection_manager = ConnectionManager()
@@ -321,28 +358,39 @@ class Game:
                     self.add_game_object(a.target,
                                          a.args[0],
                                          a.args[1])
+                elif a.action == "move":
+                    target_object = self.game_objects[a.target]
+                    try:
+                        new_obj = target_object.spawn_trail()
+                        self.game_objects[new_obj.name] = new_obj
+                    except AttributeError:
+                        pass
+
+                    self.game_objects[a.target].move(*a.args)
+
                 else:
                     try:
+                        # Try to run the method of the game object with the name of the action.
                         getattr(self.game_objects[a.target], a.action)(*a.args)
                     except AttributeError:
                         pass
 
-    def add_game_object(self, name, obj_type, colour):
+    def add_game_object(self, name, obj_type, colour, creator="", pos=(0, 0), direction="n"):
         if name in self.game_objects.keys():
             return False
         if not (colour in COLOURS):
             return False
         if obj_type == "ship":
-            self.game_objects[name] = GameObject(name,
-                                                 "ship",
-                                                 "colour",
-                                                 (0, 0),
-                                                 "n")
+            self.game_objects[name] = Ship(name,
+                                           colour,
+                                           (0, 0),
+                                           "n",
+                                           creator)
             # Add ship systems.
-            self.game_objects[name].add_system(GameObjectSystem("fw_shield",
-                                                                0,
-                                                                6,
-                                                                0))
+            self.game_objects[name].add_system(ShipSystem("fw_shield",
+                                                          0,
+                                                          6,
+                                                          0))
             # More systems here.
         elif obj_type == "something else":
             pass  # Make the things.

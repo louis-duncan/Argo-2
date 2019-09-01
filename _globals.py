@@ -4,8 +4,9 @@ GET_PORT = 31417
 
 DIRECTIONS = ("n", "ne", "e", "se", "s", "sw", "w", "nw")
 COLOURS = ("red", "green", "blue", "yellow", "white", "black")
-SERVER_COMMANDS = {"create": ("type", "colour(red|blue|green|yellow|white|black)"),
-                   "destroy": ("leave_debris(True|False)",),
+SERVER_COMMANDS = {"create": ("type", "colour(red|blue|green|yellow|white|black)",
+                              "x_pos(0-19)", "y_pos(0-19)", "direction(n|ne|e|se|s|sw|w|nw)"),
+                   "destroy": ("leave_debris(true|false)",),
                    "set_pos": ("x(0-w)", "y(0-h)"),
                    "move": ("n|ne|e|se|s|sw|w|nw|f",),
                    "face": ("n|ne|e|se|s|sw|w|nw|l|r",),
@@ -15,3 +16,8 @@ SERVER_COMMANDS = {"create": ("type", "colour(red|blue|green|yellow|white|black)
                    "set_stat": ("system_name", "up|down"),
                    "reset": tuple(),
                    }
+GAME_OBJECT_TYPES = ("ship",
+                     "trail",
+                     "station",
+                     "rock",
+                     "anomaly")

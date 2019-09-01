@@ -13,70 +13,19 @@ class EventError(Exception):
 
 
 class GameEvent:
-    def __init__(self, source, action=None, target=None, args=None, raw=None):
+    def __init__(self, source, target=None, action=None, args=None, raw=None):
         self.source = source
 
-        if target is None:
-            target = ""
-        if action is None:
-            action = ""
-        if args is None:
-            args = list()
-        if raw is None:
-            raw = dict()
-
-        if target != "" or action != "":
+        if not (None in (target, action, args)):
             self.target = target
             self.action = action
             self.args = args
+        elif sorted(raw.keys()) == ["action", "args", "target"]:
+            self.target = raw["target"]
+            self.action = raw["action"]
+            self.args = raw["args"]
         else:
-            if type(raw) is dict:
-                pass
-            elif type(raw) is str:
-                try:
-                    raw = json.loads(raw)
-                    if not (type(raw) is dict):
-                        raise (EventError("Could not convert event data of type " + str(type(raw))))
-                except json.JSONDecodeError:
-                    raise EventError("Invalid JSON data from string.")
-            elif type(raw) is bytes:
-                try:
-                    raw = raw.decode()
-                    raw = json.loads(raw)
-                except json.JSONDecodeError:
-                    raise EventError("Invalid JSON data from bytes.")
-            else:
-                raise (EventError("Could not convert event data of type " + str(type(raw))))
-
-            try:
-                self.target = raw["target"]
-            except KeyError:
-                raise EventError("Event data missing 'target' information.")
-
-            try:
-                action_parts = raw["action"].split(" ")
-                self.action = action_parts[0].lower()
-                self.args = action_parts[1:]
-                if not (self.action in SERVER_COMMANDS.keys()):
-                    raise EventError("Unknown command '{}'".format(self.action))
-            except KeyError:
-                raise EventError("Event data missing 'action' information.")
-
-            try:
-                if type(raw["args"]) is str:
-                    raw["args"] = raw["args"].split(" ")
-                self.args += raw["args"]
-            except KeyError:
-                pass
-
-            for a in range(len(self.args)):
-                self.args[a] = self.args[a].lower()
-
-            if len(self.args) != len(SERVER_COMMANDS[self.action]):
-                raise EventError("Invalid number of arguments given. {} expected, {} given.".format(
-                    len(SERVER_COMMANDS[self.action]),
-                    len(self.args))
-                                 )
+            raise TypeError("Cannot create GameEvent. No overload condition met.")
 
         self.time = time.time()
 
@@ -222,7 +171,7 @@ class GameObject:
     def show(self):
         self.hidden = False
 
-    def destroy(self, leave_debris=False):
+    def destroy(self, leave_debris=None):
         if type(leave_debris) == str:
             if not (leave_debris.lower() in ("true", "false")):
                 raise TypeError("'{}' cannot be converted to bool.".format(leave_debris))

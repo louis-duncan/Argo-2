@@ -7,6 +7,13 @@ class Game:
     def __init__(self):
         self.entities = []
 
+    def get_entities(self, pos):
+        results = []
+        for e in self.entities:
+            if e.pos[0] == pos[0] and e.pos[1] == pos[1]:
+                results.append(e)
+        return results
+
 
 class Entity:
     def __init__(self,
@@ -187,10 +194,46 @@ class Debris(Entity):
                  created_by=None,
                  ttl=None):
         super().__init__(parent,
-                         entity_id=ANY_ID,
-                         name="no_name",
-                         colour=BLACK,
-                         pos=(0, 0),
-                         facing=NORTH,
-                         created_by=None,
-                         ttl=None)
+                         entity_id=entity_id,
+                         name=name,
+                         colour=colour,
+                         pos=pos,
+                         facing=facing,
+                         created_by=created_by,
+                         ttl=ttl)
+        self._last_turn_time = 0
+        self._turn_interval = 2
+
+    def tick(self):
+        if self._last_turn_time + self._turn_interval < time.time():
+            self.turn(RIGHT)
+            self._last_turn_time = time.time()
+        super().tick()
+
+
+class Station(Entity):
+    def __init__(self,
+                 parent,
+                 entity_id=ANY_ID,
+                 name="no_name",
+                 colour=BLACK,
+                 pos=(0, 0),
+                 facing=NORTH,
+                 created_by=None,
+                 ttl=None):
+        super().__init__(parent,
+                         entity_id,
+                         name,
+                         colour,
+                         pos,
+                         facing,
+                         created_by,
+                         ttl)
+        self._last_turn_time = 0
+        self._turn_interval = 3
+
+    def tick(self):
+        if self._last_turn_time + self._turn_interval < time.time():
+            self.turn(RIGHT)
+            self._last_turn_time = time.time()
+        super().tick()

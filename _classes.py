@@ -1,11 +1,44 @@
-from _globals import *
 import random
 import time
+import queue
+import socket
+import threading
+import json
+import logging
+import sys
+from _globals import *
+
+
+# noinspection SpellCheckingInspection
+logging.basicConfig(
+    filename="server_log.log",
+    format='%(asctime)s - %(levelname)s: %(message)s',
+    datefmt='%d/%m/%Y %I:%M:%S %p',
+    level=logging.DEBUG
+)
+
+
+class Clock:
+    def __init__(self):
+        self._last_tick_time = 0
+
+    def tick(self, rate):
+        delay = (self._last_tick_time + (1 / rate)) - time.time()
+        if delay < 0:
+            delay = 0
+        time.sleep(delay)
+        self._last_tick_time = time.time()
 
 
 class Game:
     def __init__(self):
         self.entities = []
+        self.events_queue = queue.SimpleQueue()
+
+        self.Communicator = ServerCommunicator(self, SERVER_ADDR)
+
+        self._tick_thread = threading.Thread(target=self.tick_loop, args=tuple())
+        self._tick_thread.start()
 
     def get_entities(self, pos):
         results = []
@@ -14,25 +47,58 @@ class Game:
                 results.append(e)
         return results
 
+    def tick_loop(self, rate=30):
+        clock = Clock()
+        while True:
+            self.handle_events()
+            for e in self.entities:
+                e.tick()
+            clock.tick(rate)
+
+    def handle_events(self):
+        event: dict
+        for event in range(self.events_queue.qsize()):
+            print(self.events_queue.get())
+
+            try:
+                if event["action"] == "move":
+                    pass
+                elif event["action"] == "turn":
+                    pass
+                elif event["action"] == "destroy":
+                    pass
+                elif event["action"] == "fire_weapon":
+                    pass
+                else:
+                    print("Unknown action", event["action"])
+            except KeyError as err:
+                print("Bad key:", err.args[0])
+
+    def get_state(self):
+        return {"entities": self.entities}
+
 
 class Entity:
     def __init__(self,
-                 parent,
+                 parent=None,
                  entity_id=ANY_ID,
                  name="no_name",
                  colour=BLACK,
                  pos=(0, 0),
                  facing=NORTH,
                  created_by=None,
-                 ttl=None):
+                 created_time=None,
+                 ttl=None,
+                 **kwargs):
         self.parent = parent
         self.entity_id = entity_id
         self.name = name
         self.colour = colour
         self.pos = pos
         self.facing = facing
-        self.created_time = time.time()
         self.created_by = created_by
+        if created_time is None:
+            self.created_time = time.time()
         self.ttl = ttl
 
         if self.entity_id is None:
@@ -64,37 +130,24 @@ class Entity:
 
 
 class Ship(Entity):
-    def __init__(self,
-                 parent,
-                 entity_id=ANY_ID,
-                 name="no_name",
-                 colour=BLACK,
-                 pos=(0, 0),
-                 facing=NORTH,
-                 created_by=None,
-                 ttl=None):
-        super().__init__(parent,
-                         entity_id,
-                         name,
-                         colour,
-                         pos,
-                         facing,
-                         created_by,
-                         ttl)
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
         self.trail_ttl = 60
-
         self.reactor_overload = False
         self.shields_level = 0
         self.hull_hp = 24
 
         self.systems = [
-            ShipSystem(self, "Reactor_Output"),
-            ShipSystem(self, "Shields"),
-            ShipSystem(self, "Weapons"),
-            ShipSystem(self, "Life_Support"),
-            ShipSystem(self, "Holograms")
+            ShipSystem("Reactor_Output"),
+            ShipSystem("Shields"),
+            ShipSystem("Weapons"),
+            ShipSystem("Life_Support"),
+            ShipSystem("Holograms")
         ]
+
+        for kwarg in kwargs:
+            setattr(self, kwarg, kwargs[kwarg])
 
     def _spawn_trail(self, pos=None):
         if pos is None:
@@ -135,12 +188,14 @@ class Ship(Entity):
 
 
 class ShipSystem:
-    def __init__(self, parent, name, level=0, max_level=8):
-        self.parent = parent
+    def __init__(self, name, level=0, max_level=8, modifiers=None, **kwargs):
         self.name = name
         self._level = level
         self.max_level = max_level
-        self.modifiers = []
+        if modifiers is None:
+            self.modifiers = list()
+        else:
+            self.modifiers = modifiers
 
     def level(self, lvl=None):
         if lvl is not None:
@@ -158,49 +213,23 @@ class ShipSystem:
 
 
 class SystemModifier:
-    def __init__(self, amount, ttl):
+    def __init__(self, amount, ttl, expiry=None, **kwargs):
         self.amount = amount
-        self.expiry = time.time() + ttl
+        self.ttl = ttl
+        if expiry is None:
+            self.expiry = time.time() + ttl
+        else:
+            self.expiry = expiry
 
 
 class Trail(Entity):
-    def __init__(self,
-                 parent,
-                 entity_id=ANY_ID,
-                 name="trail",
-                 colour=BLACK,
-                 pos=(0, 0),
-                 facing=NORTH,
-                 created_by=None,
-                 ttl=60):
-        super().__init__(parent,
-                         entity_id,
-                         name,
-                         colour,
-                         pos,
-                         facing,
-                         created_by,
-                         ttl)
+    def __init__(self, **kwargs):
+        super().__init__(kwargs)
 
 
 class Debris(Entity):
-    def __init__(self,
-                 parent,
-                 entity_id=ANY_ID,
-                 name="no_name",
-                 colour=BLACK,
-                 pos=(0, 0),
-                 facing=NORTH,
-                 created_by=None,
-                 ttl=None):
-        super().__init__(parent,
-                         entity_id=entity_id,
-                         name=name,
-                         colour=colour,
-                         pos=pos,
-                         facing=facing,
-                         created_by=created_by,
-                         ttl=ttl)
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         self._last_turn_time = 0
         self._turn_interval = 2
 
@@ -212,23 +241,8 @@ class Debris(Entity):
 
 
 class Station(Entity):
-    def __init__(self,
-                 parent,
-                 entity_id=ANY_ID,
-                 name="no_name",
-                 colour=BLACK,
-                 pos=(0, 0),
-                 facing=NORTH,
-                 created_by=None,
-                 ttl=None):
-        super().__init__(parent,
-                         entity_id,
-                         name,
-                         colour,
-                         pos,
-                         facing,
-                         created_by,
-                         ttl)
+    def __init__(self, **kwargs):
+        super().__init__(kwargs)
         self._last_turn_time = 0
         self._turn_interval = 3
 
@@ -237,3 +251,183 @@ class Station(Entity):
             self.turn(RIGHT)
             self._last_turn_time = time.time()
         super().tick()
+
+
+class CommunicationError(Exception):
+    pass
+
+
+class ServerCommunicator:
+    def __init__(self, parent, addr):
+        self.parent = parent
+        self._addr = addr
+
+        self.errors = []
+        self.msg_size_limit = 1024
+
+        self._server_socket = socket.socket()
+        self._server_socket.bind(self._addr)
+        self._server_socket.listen(5)
+
+        self._connection_threads = []
+        self._connection_sockets = []
+        self._receiver = threading.Thread(target=self.thread_runner, args=(self.connection_receiver, tuple()))
+        self._receiver.start()
+
+    def thread_runner(self, target, args):
+        try:
+            target(*args)
+        except Exception as e:
+            self.errors.append(sys.exc_info())
+            logging.warning('Exception "{}" occurred in TCP/IP thread.'.format(type(e)))
+            self.errors.append(e)
+
+    def connection_receiver(self):
+        while True:
+            con, addr = self._server_socket.accept()
+            logging.info("New connection received from {}.".format(con.getpeername()))
+            new = threading.Thread(target=self.thread_runner, args=(self.client_handler, (con,)))
+            self._connection_threads.append(new)
+            new.start()
+
+    def client_handler(self, con):
+        """
+
+        :type con: socket.socket
+        """
+        self._connection_sockets.append(con)
+        peer_name = con.getpeername()
+
+        try:
+            run = True
+            while run:
+                msg_len = con.recv(2)
+                if msg_len == b"":
+                    logging.info("Client {} closed its connection.".format(peer_name))
+                    self._connection_sockets.remove(con)
+                    break
+
+                msg_len = (msg_len[0] * 256) + msg_len[1]
+
+                if msg_len > self.msg_size_limit:
+                    logging.warning("Client {} sent a message over the size limit ({}/{}).".format(
+                        peer_name,
+                        msg_len,
+                        self.msg_size_limit
+                    ))
+                    con.close()
+                    self._connection_sockets.remove(con)
+                    logging.info("Connection with {} closed due to violation.".format(peer_name))
+                    run = False
+                    continue
+
+                msg_data = con.recv(msg_len).decode()
+                if len(msg_data) != msg_len:
+                    logging.warning("Client {} sent a runt message (length: {}).".format(
+                        peer_name,
+                        msg_len
+                    ))
+                    con.close()
+                    self._connection_sockets.remove(con)
+                    logging.info("Connection with {} closed due to violation.".format(peer_name))
+                    run = False
+                    continue
+
+                try:
+                    msg_data = json.loads(msg_data)
+                    if type(msg_data) is not dict:
+                        raise TypeError
+                except json.decoder.JSONDecodeError:
+
+                    logging.warning("Client {} sent a message of invalid format.".format(peer_name))
+                    con.close()
+                    self._connection_sockets.remove(con)
+                    logging.info("Connection with {} closed due to violation.".format(peer_name))
+                    run = False
+                    continue
+                except TypeError:
+                    logging.warning("Client {} sent a message of invalid type.".format(peer_name))
+                    con.close()
+                    self._connection_sockets.remove(con)
+                    logging.info("Connection with {} closed due to violation.".format(peer_name))
+                    run = False
+                    continue
+
+                if "action" in msg_data.keys() and msg_data["action"] == "update_request":
+                    self.send_data(con, self.parent.get_state())
+                else:
+                    self.parent.events_queue.put(msg_data)
+
+        except Exception as e:
+            try:
+                self._connection_sockets.remove(con)
+            except ValueError:
+                pass
+            raise e
+
+    def send_data(self, con, data):
+        raw_data = json.dumps(make_json_friendly(data)).encode()
+        len_bytes = bytes([len(raw_data) // 256, len(raw_data) % 256])
+        con.send(len_bytes)
+        con.send(raw_data)
+
+
+class ClientCommunicator(socket.socket):
+    def object_send(self, data):
+        raw = json.dumps(data).encode()
+        len_bytes = bytes([len(raw) // 256, len(raw) % 256])
+        super().send(len_bytes)
+        super().send(raw)
+
+    def object_recv(self):
+        msg_len = self.recv(2)
+        if msg_len == b"":
+            return
+        received_bytes = self.recv((msg_len[0] * 256) + msg_len[1])
+        return object_from_decoded_json(json.loads(received_bytes.decode()), None)
+
+
+def create_client_connection(addr):
+    con = ClientCommunicator()
+    con.connect(addr)
+    return con
+
+
+def make_json_friendly(o):
+    """Take an object and converts it to a JSON compatible object.
+    Any object (o) which is not a standard data type will be converted to a dict
+    with the __type__ key specifying the objects original type."""
+    if type(o) in (str, int, float, bool, type(None)):
+        new_o = o
+    elif type(o) is dict:
+        new_o = dict()
+        for k in o:
+            new_o[k] = make_json_friendly(o[k])
+    elif type(o) in (list, tuple):
+        new_o = list(o)
+        for i in range(len(new_o)):
+            new_o[i] = make_json_friendly(new_o[i])
+    else:
+        new_o = dict(o.__dict__)
+        if "parent" in new_o.keys():
+            r = new_o.pop("parent")
+        new_o["__type__"] = type(o).__name__
+        new_o = make_json_friendly(new_o)
+    return new_o
+
+
+def object_from_decoded_json(o, parent=None):
+    if type(o) is dict:
+        if "__type__" in o.keys():
+            o_type = o.pop("__type__")
+            kwargs = object_from_decoded_json(o)
+            new_object = globals()[o_type](parent=parent, **kwargs)
+        else:
+            new_object = {key: object_from_decoded_json(value) for (key, value) in o.items()}
+    elif type(o) in (str, int, float, bool, type(None)):
+        new_object = o
+    elif type(o) in (list, tuple):
+        new_object = [object_from_decoded_json(i) for i in o]
+    else:
+        new_object = None
+    return new_object

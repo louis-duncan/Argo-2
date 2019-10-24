@@ -1,0 +1,415 @@
+15/10/2019 12:11:45 PM - INFO: New connection received from ('127.0.0.1', 50820).
+15/10/2019 12:11:45 PM - WARNING: Exception "('client_handler() argument after * must be an iterable, not socket',)" occurred in TCP/IP thread.
+15/10/2019 12:12:53 PM - INFO: New connection received from ('127.0.0.1', 50890).
+15/10/2019 12:36:21 PM - INFO: New connection received from ('127.0.0.1', 51112).
+15/10/2019 01:00:18 PM - INFO: New connection received from ('127.0.0.1', 51285).
+15/10/2019 01:05:41 PM - INFO: New connection received from ('127.0.0.1', 51395).
+15/10/2019 01:09:41 PM - INFO: New connection received from ('127.0.0.1', 51697).
+15/10/2019 01:10:18 PM - WARNING: Client ('127.0.0.1', 51697) sent a message of invalid format.
+15/10/2019 01:10:18 PM - WARNING: Exception "('list.remove(x): x not in list',)" occurred in TCP/IP thread.
+15/10/2019 01:13:50 PM - INFO: New connection received from ('127.0.0.1', 51803).
+15/10/2019 01:13:54 PM - WARNING: Client ('127.0.0.1', 51803) sent a message over the size limit (1024).
+15/10/2019 01:13:54 PM - WARNING: Exception "('list.remove(x): x not in list',)" occurred in TCP/IP thread.
+15/10/2019 01:15:24 PM - INFO: New connection received from ('127.0.0.1', 51886).
+15/10/2019 01:15:38 PM - WARNING: Client ('127.0.0.1', 51886) sent a message of invalid format.
+15/10/2019 01:15:38 PM - WARNING: Exception "('list.remove(x): x not in list',)" occurred in TCP/IP thread.
+15/10/2019 01:17:09 PM - INFO: New connection received from ('127.0.0.1', 52027).
+15/10/2019 01:17:16 PM - WARNING: Client ('127.0.0.1', 52027) sent a message of invalid format.
+15/10/2019 01:17:16 PM - WARNING: Exception "('list.remove(x): x not in list',)" occurred in TCP/IP thread.
+15/10/2019 01:18:26 PM - INFO: New connection received from ('127.0.0.1', 52107).
+15/10/2019 01:18:34 PM - WARNING: Client ('127.0.0.1', 52107) sent a message of invalid format.
+15/10/2019 01:18:34 PM - WARNING: Exception "('list.remove(x): x not in list',)" occurred in TCP/IP thread.
+15/10/2019 01:20:09 PM - INFO: New connection received from ('127.0.0.1', 52117).
+15/10/2019 01:20:14 PM - WARNING: Client ('127.0.0.1', 52117) sent a message of invalid format.
+15/10/2019 01:20:14 PM - WARNING: Exception "('list.remove(x): x not in list',)" occurred in TCP/IP thread.
+15/10/2019 01:20:49 PM - INFO: New connection received from ('127.0.0.1', 52263).
+15/10/2019 01:20:53 PM - WARNING: Client ('127.0.0.1', 52263) sent a message over the size limit (1024).
+15/10/2019 01:20:53 PM - WARNING: Exception "('list.remove(x): x not in list',)" occurred in TCP/IP thread.
+15/10/2019 01:21:29 PM - INFO: New connection received from ('127.0.0.1', 52273).
+15/10/2019 01:22:18 PM - WARNING: Client ('127.0.0.1', 52273) sent a message of invalid format.
+15/10/2019 01:24:42 PM - INFO: New connection received from ('127.0.0.1', 52347).
+15/10/2019 01:24:45 PM - WARNING: Client ('127.0.0.1', 52347) sent a message of invalid format.
+15/10/2019 01:24:45 PM - INFO: Connection with ('127.0.0.1', 52347) closed due to violation.
+15/10/2019 01:27:15 PM - INFO: New connection received from ('127.0.0.1', 52509).
+15/10/2019 01:27:20 PM - WARNING: Client ('127.0.0.1', 52509) sent a message of invalid format.
+15/10/2019 01:27:20 PM - WARNING: Exception "('list.remove(x): x not in list',)" occurred in TCP/IP thread.
+15/10/2019 01:28:33 PM - INFO: New connection received from ('127.0.0.1', 52581).
+15/10/2019 01:28:38 PM - WARNING: Client ('127.0.0.1', 52581) sent a message of invalid format.
+15/10/2019 01:28:38 PM - WARNING: Exception "('my custom exception',)" occurred in TCP/IP thread.
+15/10/2019 01:30:08 PM - INFO: New connection received from ('127.0.0.1', 52589).
+15/10/2019 01:30:16 PM - INFO: New connection received from ('127.0.0.1', 52658).
+15/10/2019 01:30:19 PM - WARNING: Client ('127.0.0.1', 52658) sent a message of invalid format.
+15/10/2019 01:30:19 PM - INFO: Connection with ('127.0.0.1', 52658) closed due to violation.
+15/10/2019 01:31:44 PM - INFO: New connection received from ('127.0.0.1', 52686).
+15/10/2019 01:32:59 PM - WARNING: Client ('127.0.0.1', 52686) sent a message of invalid format.
+15/10/2019 01:32:59 PM - INFO: Connection with ('127.0.0.1', 52686) closed due to violation.
+15/10/2019 01:33:17 PM - INFO: New connection received from ('127.0.0.1', 52703).
+15/10/2019 01:33:31 PM - WARNING: Client ('127.0.0.1', 52703) sent a message of invalid format.
+15/10/2019 01:33:31 PM - INFO: Connection with ('127.0.0.1', 52703) closed due to violation.
+15/10/2019 01:35:05 PM - INFO: New connection received from ('127.0.0.1', 52708).
+15/10/2019 01:35:11 PM - WARNING: Client ('127.0.0.1', 52708) sent a message over the size limit (1024).
+15/10/2019 01:35:11 PM - INFO: Connection with ('127.0.0.1', 52708) closed due to violation.
+15/10/2019 01:39:49 PM - INFO: New connection received from ('127.0.0.1', 52798).
+15/10/2019 01:40:09 PM - WARNING: Client ('127.0.0.1', 52798) sent a runt message (length: 20). It was ignored.
+15/10/2019 01:42:19 PM - INFO: New connection received from ('127.0.0.1', 52873).
+15/10/2019 01:42:33 PM - WARNING: Client ('127.0.0.1', 52873) sent a runt message (length: 20). It was ignored.
+15/10/2019 01:42:41 PM - INFO: Client ('127.0.0.1', 52873) closed its connection.
+15/10/2019 01:42:49 PM - INFO: New connection received from ('127.0.0.1', 52879).
+15/10/2019 01:43:10 PM - WARNING: Client ('127.0.0.1', 52879) sent a message over the size limit (1024).
+15/10/2019 01:43:10 PM - INFO: Connection with ('127.0.0.1', 52879) closed due to violation.
+15/10/2019 01:43:29 PM - INFO: New connection received from ('127.0.0.1', 52883).
+15/10/2019 01:43:35 PM - WARNING: Client ('127.0.0.1', 52883) sent a message over the size limit (1024).
+15/10/2019 01:43:35 PM - INFO: Connection with ('127.0.0.1', 52883) closed due to violation.
+15/10/2019 01:45:14 PM - INFO: New connection received from ('127.0.0.1', 52953).
+15/10/2019 01:45:58 PM - WARNING: Client ('127.0.0.1', 52953) sent a runt message (length: 20). It was ignored.
+15/10/2019 01:46:35 PM - WARNING: Client ('127.0.0.1', 52953) sent a message of invalid format.
+15/10/2019 01:46:35 PM - INFO: Connection with ('127.0.0.1', 52953) closed due to violation.
+15/10/2019 01:47:50 PM - INFO: New connection received from ('127.0.0.1', 53024).
+15/10/2019 01:48:16 PM - WARNING: Client ('127.0.0.1', 53024) sent a message of invalid format.
+15/10/2019 01:48:16 PM - INFO: Connection with ('127.0.0.1', 53024) closed due to violation.
+15/10/2019 01:48:47 PM - INFO: New connection received from ('127.0.0.1', 53029).
+15/10/2019 01:48:54 PM - WARNING: Client ('127.0.0.1', 53029) sent a runt message (length: 20).
+15/10/2019 01:48:54 PM - INFO: Connection with ('127.0.0.1', 53029) closed due to violation.
+15/10/2019 01:52:25 PM - INFO: New connection received from ('127.0.0.1', 53042).
+15/10/2019 01:52:25 PM - WARNING: Client ('127.0.0.1', 53042) sent a message over the size limit (11460/1024).
+15/10/2019 01:52:25 PM - INFO: Connection with ('127.0.0.1', 53042) closed due to violation.
+15/10/2019 01:52:27 PM - INFO: New connection received from ('127.0.0.1', 53044).
+15/10/2019 01:52:27 PM - WARNING: Client ('127.0.0.1', 53044) sent a message over the size limit (22683/1024).
+15/10/2019 01:52:28 PM - INFO: Connection with ('127.0.0.1', 53044) closed due to violation.
+15/10/2019 01:52:30 PM - INFO: New connection received from ('127.0.0.1', 53046).
+15/10/2019 01:52:30 PM - WARNING: Client ('127.0.0.1', 53046) sent a message over the size limit (29311/1024).
+15/10/2019 01:52:30 PM - INFO: Connection with ('127.0.0.1', 53046) closed due to violation.
+15/10/2019 01:52:32 PM - INFO: New connection received from ('127.0.0.1', 53048).
+15/10/2019 01:52:32 PM - WARNING: Client ('127.0.0.1', 53048) sent a message over the size limit (57673/1024).
+15/10/2019 01:52:32 PM - INFO: Connection with ('127.0.0.1', 53048) closed due to violation.
+15/10/2019 01:52:34 PM - INFO: New connection received from ('127.0.0.1', 53050).
+15/10/2019 01:52:34 PM - WARNING: Client ('127.0.0.1', 53050) sent a message over the size limit (59377/1024).
+15/10/2019 01:52:34 PM - INFO: Connection with ('127.0.0.1', 53050) closed due to violation.
+15/10/2019 01:52:36 PM - INFO: New connection received from ('127.0.0.1', 53052).
+15/10/2019 01:52:36 PM - WARNING: Client ('127.0.0.1', 53052) sent a message over the size limit (6834/1024).
+15/10/2019 01:52:36 PM - INFO: Connection with ('127.0.0.1', 53052) closed due to violation.
+15/10/2019 01:52:38 PM - INFO: New connection received from ('127.0.0.1', 53054).
+15/10/2019 01:52:38 PM - WARNING: Client ('127.0.0.1', 53054) sent a message over the size limit (62891/1024).
+15/10/2019 01:52:38 PM - INFO: Connection with ('127.0.0.1', 53054) closed due to violation.
+15/10/2019 01:52:40 PM - INFO: New connection received from ('127.0.0.1', 53056).
+15/10/2019 01:52:40 PM - WARNING: Client ('127.0.0.1', 53056) sent a message over the size limit (6204/1024).
+15/10/2019 01:52:40 PM - INFO: Connection with ('127.0.0.1', 53056) closed due to violation.
+15/10/2019 01:52:42 PM - INFO: New connection received from ('127.0.0.1', 53058).
+15/10/2019 01:52:42 PM - WARNING: Client ('127.0.0.1', 53058) sent a message over the size limit (41224/1024).
+15/10/2019 01:52:42 PM - INFO: Connection with ('127.0.0.1', 53058) closed due to violation.
+15/10/2019 01:52:44 PM - INFO: New connection received from ('127.0.0.1', 53060).
+15/10/2019 01:52:44 PM - WARNING: Client ('127.0.0.1', 53060) sent a message over the size limit (27626/1024).
+15/10/2019 01:52:44 PM - INFO: Connection with ('127.0.0.1', 53060) closed due to violation.
+15/10/2019 01:52:46 PM - INFO: New connection received from ('127.0.0.1', 53062).
+15/10/2019 01:52:46 PM - WARNING: Client ('127.0.0.1', 53062) sent a message over the size limit (46813/1024).
+15/10/2019 01:52:46 PM - INFO: Connection with ('127.0.0.1', 53062) closed due to violation.
+15/10/2019 01:52:48 PM - INFO: New connection received from ('127.0.0.1', 53064).
+15/10/2019 01:52:48 PM - WARNING: Client ('127.0.0.1', 53064) sent a message over the size limit (26588/1024).
+15/10/2019 01:52:48 PM - INFO: Connection with ('127.0.0.1', 53064) closed due to violation.
+15/10/2019 01:52:50 PM - INFO: New connection received from ('127.0.0.1', 53066).
+15/10/2019 01:52:50 PM - WARNING: Client ('127.0.0.1', 53066) sent a message over the size limit (47146/1024).
+15/10/2019 01:52:50 PM - INFO: Connection with ('127.0.0.1', 53066) closed due to violation.
+15/10/2019 01:52:52 PM - INFO: New connection received from ('127.0.0.1', 53068).
+15/10/2019 01:52:52 PM - WARNING: Exception "('utf-8', b'\xcc\xc8\xa8M\xd4\xc1,\x88<_"\r\xa3\xd0\xd7\x81\x1d&;\x1e\x0b\x8aU\x17\xc4\x82\x99\xbc"\xd6\r3A*\nV>\xab\xc4\xfc\xf5\r-\x87\xd91\xa2-\xac\xff\x98\xcd\xde\x0e\\2\xf7\x87\x1b\x1b\x0c\xb6\x0e\xcc\x7f\x93\xe5 s\xdaU\x13\xf03g)\xa5\xecHWl1\x93p\\5\x8a\xf9\xd7#p\x89\x84\x12s\xe8{\xce\xf9\xab\xc4\xb9\xaa\xaa\x19\xd6\x07\xa3\xa3\xc9\xfd\xbd\x07L\xb0`\xdc\xf4y5\xdd\xa8hp\x08\\w\x92\xe0\xdd\xd0e-2y\xdb1\x1eG\xba1\x06\xa1\xd6\xa4\xa7\xf2\xed\x93\xe5r\xfb\xaa\x1b\x18\x8eH\x8f\x1b\x88M\xff:\xb8\xa8\x96\x85\xbc.L`}\xa9\xae\r$3w\x9a\xca\xcd<\x99\xf9\x17~\xc1o\xa9W\xc8>\xc5:%\xef\xa6\x1e\x18U\x94\xe8p7\xf0\xbf>\xff\x81%', 0, 1, 'invalid continuation byte')" occurred in TCP/IP thread.
+15/10/2019 01:52:54 PM - INFO: New connection received from ('127.0.0.1', 53070).
+15/10/2019 01:52:54 PM - WARNING: Client ('127.0.0.1', 53070) sent a message over the size limit (21908/1024).
+15/10/2019 01:52:54 PM - INFO: Connection with ('127.0.0.1', 53070) closed due to violation.
+15/10/2019 01:52:56 PM - INFO: New connection received from ('127.0.0.1', 53072).
+15/10/2019 01:52:56 PM - WARNING: Client ('127.0.0.1', 53072) sent a message over the size limit (49638/1024).
+15/10/2019 01:52:56 PM - INFO: Connection with ('127.0.0.1', 53072) closed due to violation.
+15/10/2019 01:52:58 PM - INFO: New connection received from ('127.0.0.1', 53074).
+15/10/2019 01:52:58 PM - WARNING: Client ('127.0.0.1', 53074) sent a message over the size limit (41111/1024).
+15/10/2019 01:52:58 PM - INFO: Connection with ('127.0.0.1', 53074) closed due to violation.
+15/10/2019 01:53:00 PM - INFO: New connection received from ('127.0.0.1', 53076).
+15/10/2019 01:53:00 PM - WARNING: Client ('127.0.0.1', 53076) sent a message over the size limit (10402/1024).
+15/10/2019 01:53:00 PM - INFO: Connection with ('127.0.0.1', 53076) closed due to violation.
+15/10/2019 01:53:02 PM - INFO: New connection received from ('127.0.0.1', 53078).
+15/10/2019 01:53:02 PM - WARNING: Exception "('utf-8', b'\xe74\xa8\xa1\xfdG\xcbFiJf\x1d\xb0H\xaat\x05\x1d)\xe4\x9c\xa3z\x8d"\xe1\x91\xa9[\xf6=\xdf\xf3\xb0Rn,_\xb2\xcf+U\xfe\xa7\x95\xdf\x06\x8f\xba', 0, 1, 'invalid continuation byte')" occurred in TCP/IP thread.
+15/10/2019 01:53:04 PM - INFO: New connection received from ('127.0.0.1', 53080).
+15/10/2019 01:53:04 PM - WARNING: Client ('127.0.0.1', 53080) sent a message over the size limit (2112/1024).
+15/10/2019 01:53:04 PM - INFO: Connection with ('127.0.0.1', 53080) closed due to violation.
+15/10/2019 01:53:06 PM - INFO: New connection received from ('127.0.0.1', 53082).
+15/10/2019 01:53:06 PM - WARNING: Client ('127.0.0.1', 53082) sent a message over the size limit (7520/1024).
+15/10/2019 01:53:06 PM - INFO: Connection with ('127.0.0.1', 53082) closed due to violation.
+15/10/2019 01:53:08 PM - INFO: New connection received from ('127.0.0.1', 53086).
+15/10/2019 01:53:08 PM - WARNING: Exception "('utf-8', b"\xb2+^\xd0\x04]\xa0H\x89Q\x97\xec\x93K\x80i\xa0d1\xb71\x83Ed=\xbd\x9b\x10\xf3@\xd3\xa1\xed\xc2\xe5c\xdck\xd0;\x1aO\x8c?\x18;\x00\xd7o^\xd3o~\xa2\xe08\xb4\xef\xcc7\xca\xe7\xaf1\x83\xaf\x98=9\x93\xc8\n\xc20\x05m\xf28\xdb\xb6\xfa\xdb\xe4kK\xec\xc3~n0s\x0f:?c9a\xf6]\xf4ZDK\xeaL\xa89\xbdE\x95\x90u-\xaa\x0f.&\x86\x7f\x07\xa1)Q8\xefcy\xab\xef\x1d\xebt\x0f\xc9\x85\xff\x13\x82S'\x84\xbf\xa8\x0f_\xc3Mk\x06\x03B\x14\x99\xa62\x08\x93\xca2[\xe6\xff\xc6\x03\x1f\xd6\xda*j6A\xd9\xb5}\x1eR\x93\xaa\x99U\xa4\x85\xb6\\<\x18\xb67\xaf\xe6v\x8e\x0eFx\xa3\xb7yV\x1c\xb5u\x97P\xc3\xda\xb4\xd5@\xcf]\xecr\xd5\x15\xa2\x8c\xc5!\xbf|\x888\xcb\xce\x81\xcev9\x1c\xa9\xd4\xee\x80\x051\xac\xb5mW\x06\x03FJ\xe9\xb3*\xf9 k8j\xb0q$!\x19\xed\xb9\x87\x17@fNms\xc8XA\xa5w[\xe7S\xed\x12\xd2\\\xaf\xa1:^\x12\xdc\x1c\xa5\xd4\x10\xa3\x15\xc56\\\x03\x96\xb1~r\xcc\xb9\xe95\xbc\x1fs[\xec\xb0\xd7\x1d\nJ\x8eS\x1a<\x13/\x93za\xbe~\xe8G\xb4\xb4}\x96\xeb\xbeH\xfeKyW\x1fPi\xb0\xb8p%\xcb\xb1Az4\xf0zO;\xe7\xc9O\xd6}\xa7\x8a\x9a1\x1f\xfe/\xef\x95\x1c\x8a\x06{\xaf\x91@[\xaa=\xdd\x0b*\xcen/\x03\x05\x17\x87c/\x1fV,Rt\xfcv\x82\x9b\xbaQ[nrE5\xd3\xc1\xf4Z\xab\xc4\xd2\xd7H\x9c\xb9\x11\x13\xcea\x96E\x9a_h\xfdLB\xb8\xe6\xec\xdc\xd9\xcd\xe4\xfd\xa9$[\x9e^\xf3r\xdf\x8d\xb6\xd0\x7f%4\x85<C\x84}\xf4_\x91\x8f\xb1\xc9\xa8\xe5y/x\x98\x0f\x8f\xf0\xa1r\xaa\xb7cD\xc2*\xdf\xf1\x0eF\xf9\x06\x88*\r4\xd2<\xdb<\xff\x8c\xee?\xfd\xdfd\r\x86i+\xabK\xac\xd7A\x13]uX\xc6\xd2'2\x0f\xae\xac\x9e\x9aebd\xf4r\x87 \xa6\xd6U\x0c\xbf\x11\xe8\xf8@X\x9c\x95\xb5\xabG\xaeg\xde\xa9A\xa0\x11\xb6\xbd\xb3w\\\x1b\xad\xe8F,\xf7\x11\xbaJ\x1a\xea\xd8\xba\x13Lf\xa7\xd8\xeb\x9f\xa3\xafz\xb3\xf0\xc4\xdc{T\xe5\xc0\xce\xfb\x9cm\xc8\xfe\x0f\xe9a\xc8\xdd\xfb\xfc\xaa\x1br\x94\xa4c\xc4n\xda l\xfa\xa5s\xcf\x98G3(b\xc9#Vr\xad\x13\xabx\x87\xc3\xd9;\x08\xae?</\x9c\xe4\x96GJ\xd3k:|\xafB\xb3\xbf\xfc\x19\x94\x1dMvFP\xc7\xf4;\x06\x8eL\xad\x08\xd9\xd2+/s\xe2\xc9\x06\x13\xc7N\x96\xad\x91Mf\x93\x17\x08\x1a\xdf\xd5:\xf8\x88\xdaW\xbf\x99\xbcv7\xd8\xb0\x8b\x8d\xf3\xb7\xfa\x96(\xcc\xad\xc6a;\xfa\xe2/\xb7\xc8\x12\x84CN\xe3\x1f\x99\x86\x99\xaaoA\x1f\x99\xbe\x98\xfdS\xe1\xc0[k\xf5\x16\x012\xaa\xda\xa16\x08k\xa3+\x1b\xe5\x17X\xaa\xe5\xd8\x8eu\xba\xa1\xdc\xdc\x03\xa0\xa1U\xf7\x1e\xf6Px\xbc\xb4\x9e\xe8\x1f;G\xfb\xca\xcd\xb7\xd0\xd6\xa88+\x16m\xd9\xe2\xdc\x87\x0e11\x0e\xe4\xb0\xb6\xd9\xabMHp\x19&\xac\xb9\xac\x98\x9d\xc4\x07y#)\xf8\x11\xb1>:\xce\x18\x9f\xe99\x07\x88t\xbfI\x06\x96\xfdz\xf7\xedXd%[\x95\x0c\xc08\x85\xa7\x02b\x98\xe0\xfc4\xb1 \x81T\xebp\xa4$J\xd9\xd1\xea\x0b\xa1\x9d\n\xb8\x99\x1e\x9a\xe3\xf8\xd4\x88\xdc\xce\x88\x99\x95i\x18Nlo\xbf\xacpv\xeb\xb2\xe7\xa4\xad\xda\xfa_\x1f\xd5\xd5\xb0\x0c\xf7j\xe0a.(%5\xe0_v\xad\xb3es\xc2.\x1f4\xcd\xba\xa4o\xd0\xdd\xcd\xc0\xc2Te7\xcb\xecwo\xa9\xd3\xa8\xfc\xe5\xeaxYT\x19\x18\xc2Do\xcdf9`\x81\x19\x1c\xa4\x16\x90\xe0\xda8\xbd\x83\x03\x04\xf1&\xefa\xa3w", 0, 1, 'invalid start byte')" occurred in TCP/IP thread.
+15/10/2019 01:53:10 PM - INFO: New connection received from ('127.0.0.1', 53088).
+15/10/2019 01:53:10 PM - WARNING: Client ('127.0.0.1', 53088) sent a message over the size limit (62523/1024).
+15/10/2019 01:53:10 PM - INFO: Connection with ('127.0.0.1', 53088) closed due to violation.
+15/10/2019 01:53:12 PM - INFO: New connection received from ('127.0.0.1', 53090).
+15/10/2019 01:53:12 PM - WARNING: Client ('127.0.0.1', 53090) sent a message over the size limit (20743/1024).
+15/10/2019 01:53:12 PM - INFO: Connection with ('127.0.0.1', 53090) closed due to violation.
+15/10/2019 01:53:14 PM - INFO: New connection received from ('127.0.0.1', 53092).
+15/10/2019 01:53:14 PM - WARNING: Client ('127.0.0.1', 53092) sent a message over the size limit (50122/1024).
+15/10/2019 01:53:14 PM - INFO: Connection with ('127.0.0.1', 53092) closed due to violation.
+15/10/2019 01:53:16 PM - INFO: New connection received from ('127.0.0.1', 53094).
+15/10/2019 01:53:16 PM - WARNING: Client ('127.0.0.1', 53094) sent a message over the size limit (7122/1024).
+15/10/2019 01:53:16 PM - INFO: Connection with ('127.0.0.1', 53094) closed due to violation.
+15/10/2019 01:53:18 PM - INFO: New connection received from ('127.0.0.1', 53096).
+15/10/2019 01:53:18 PM - WARNING: Client ('127.0.0.1', 53096) sent a message over the size limit (7857/1024).
+15/10/2019 01:53:18 PM - INFO: Connection with ('127.0.0.1', 53096) closed due to violation.
+15/10/2019 01:53:20 PM - INFO: New connection received from ('127.0.0.1', 53098).
+15/10/2019 01:53:20 PM - WARNING: Client ('127.0.0.1', 53098) sent a message over the size limit (33833/1024).
+15/10/2019 01:53:20 PM - INFO: Connection with ('127.0.0.1', 53098) closed due to violation.
+15/10/2019 01:53:22 PM - INFO: New connection received from ('127.0.0.1', 53100).
+15/10/2019 01:53:22 PM - WARNING: Client ('127.0.0.1', 53100) sent a message over the size limit (40212/1024).
+15/10/2019 01:53:22 PM - INFO: Connection with ('127.0.0.1', 53100) closed due to violation.
+15/10/2019 01:53:24 PM - INFO: New connection received from ('127.0.0.1', 53102).
+15/10/2019 01:53:24 PM - WARNING: Client ('127.0.0.1', 53102) sent a message over the size limit (29950/1024).
+15/10/2019 01:53:24 PM - INFO: Connection with ('127.0.0.1', 53102) closed due to violation.
+15/10/2019 01:53:26 PM - INFO: New connection received from ('127.0.0.1', 53104).
+15/10/2019 01:53:26 PM - WARNING: Client ('127.0.0.1', 53104) sent a message over the size limit (2279/1024).
+15/10/2019 01:53:26 PM - INFO: Connection with ('127.0.0.1', 53104) closed due to violation.
+15/10/2019 01:53:28 PM - INFO: New connection received from ('127.0.0.1', 53106).
+15/10/2019 01:53:28 PM - WARNING: Client ('127.0.0.1', 53106) sent a message over the size limit (29925/1024).
+15/10/2019 01:53:28 PM - INFO: Connection with ('127.0.0.1', 53106) closed due to violation.
+15/10/2019 01:53:30 PM - INFO: New connection received from ('127.0.0.1', 53108).
+15/10/2019 01:53:30 PM - WARNING: Client ('127.0.0.1', 53108) sent a message over the size limit (21751/1024).
+15/10/2019 01:53:30 PM - INFO: Connection with ('127.0.0.1', 53108) closed due to violation.
+15/10/2019 01:53:32 PM - INFO: New connection received from ('127.0.0.1', 53110).
+15/10/2019 01:53:32 PM - WARNING: Client ('127.0.0.1', 53110) sent a message over the size limit (9244/1024).
+15/10/2019 01:53:32 PM - INFO: Connection with ('127.0.0.1', 53110) closed due to violation.
+15/10/2019 01:53:34 PM - INFO: New connection received from ('127.0.0.1', 53112).
+15/10/2019 01:53:34 PM - WARNING: Client ('127.0.0.1', 53112) sent a message over the size limit (48594/1024).
+15/10/2019 01:53:34 PM - INFO: Connection with ('127.0.0.1', 53112) closed due to violation.
+15/10/2019 01:53:36 PM - INFO: New connection received from ('127.0.0.1', 53114).
+15/10/2019 01:53:36 PM - WARNING: Client ('127.0.0.1', 53114) sent a message over the size limit (48357/1024).
+15/10/2019 01:53:36 PM - INFO: Connection with ('127.0.0.1', 53114) closed due to violation.
+15/10/2019 01:53:38 PM - INFO: New connection received from ('127.0.0.1', 53116).
+15/10/2019 01:53:38 PM - WARNING: Client ('127.0.0.1', 53116) sent a message over the size limit (63494/1024).
+15/10/2019 01:53:38 PM - INFO: Connection with ('127.0.0.1', 53116) closed due to violation.
+15/10/2019 01:53:40 PM - INFO: New connection received from ('127.0.0.1', 53118).
+15/10/2019 01:53:40 PM - WARNING: Client ('127.0.0.1', 53118) sent a message over the size limit (56535/1024).
+15/10/2019 01:53:40 PM - INFO: Connection with ('127.0.0.1', 53118) closed due to violation.
+15/10/2019 01:53:42 PM - INFO: New connection received from ('127.0.0.1', 53120).
+15/10/2019 01:53:42 PM - WARNING: Client ('127.0.0.1', 53120) sent a message over the size limit (47380/1024).
+15/10/2019 01:53:42 PM - INFO: Connection with ('127.0.0.1', 53120) closed due to violation.
+15/10/2019 01:53:44 PM - INFO: New connection received from ('127.0.0.1', 53122).
+15/10/2019 01:53:44 PM - WARNING: Client ('127.0.0.1', 53122) sent a message over the size limit (15381/1024).
+15/10/2019 01:53:44 PM - INFO: Connection with ('127.0.0.1', 53122) closed due to violation.
+15/10/2019 01:53:46 PM - INFO: New connection received from ('127.0.0.1', 53124).
+15/10/2019 01:53:46 PM - WARNING: Client ('127.0.0.1', 53124) sent a message over the size limit (33550/1024).
+15/10/2019 01:53:46 PM - INFO: Connection with ('127.0.0.1', 53124) closed due to violation.
+15/10/2019 01:53:48 PM - INFO: New connection received from ('127.0.0.1', 53126).
+15/10/2019 01:53:48 PM - WARNING: Client ('127.0.0.1', 53126) sent a message over the size limit (21876/1024).
+15/10/2019 01:53:48 PM - INFO: Connection with ('127.0.0.1', 53126) closed due to violation.
+15/10/2019 01:53:50 PM - INFO: New connection received from ('127.0.0.1', 53128).
+15/10/2019 01:53:50 PM - WARNING: Client ('127.0.0.1', 53128) sent a message over the size limit (50350/1024).
+15/10/2019 01:53:50 PM - INFO: Connection with ('127.0.0.1', 53128) closed due to violation.
+15/10/2019 01:53:53 PM - INFO: New connection received from ('127.0.0.1', 53130).
+15/10/2019 01:53:53 PM - WARNING: Client ('127.0.0.1', 53130) sent a message over the size limit (46657/1024).
+15/10/2019 01:53:53 PM - INFO: Connection with ('127.0.0.1', 53130) closed due to violation.
+15/10/2019 01:53:55 PM - INFO: New connection received from ('127.0.0.1', 53132).
+15/10/2019 01:53:55 PM - WARNING: Client ('127.0.0.1', 53132) sent a message over the size limit (52563/1024).
+15/10/2019 01:53:55 PM - INFO: Connection with ('127.0.0.1', 53132) closed due to violation.
+15/10/2019 01:53:57 PM - INFO: New connection received from ('127.0.0.1', 53134).
+15/10/2019 01:53:57 PM - WARNING: Client ('127.0.0.1', 53134) sent a message over the size limit (50778/1024).
+15/10/2019 01:53:57 PM - INFO: Connection with ('127.0.0.1', 53134) closed due to violation.
+15/10/2019 01:53:59 PM - INFO: New connection received from ('127.0.0.1', 53136).
+15/10/2019 01:53:59 PM - WARNING: Client ('127.0.0.1', 53136) sent a message over the size limit (36557/1024).
+15/10/2019 01:53:59 PM - INFO: Connection with ('127.0.0.1', 53136) closed due to violation.
+15/10/2019 01:54:01 PM - INFO: New connection received from ('127.0.0.1', 53138).
+15/10/2019 01:54:01 PM - WARNING: Client ('127.0.0.1', 53138) sent a message over the size limit (15009/1024).
+15/10/2019 01:54:01 PM - INFO: Connection with ('127.0.0.1', 53138) closed due to violation.
+15/10/2019 01:54:03 PM - INFO: New connection received from ('127.0.0.1', 53140).
+15/10/2019 01:54:03 PM - WARNING: Client ('127.0.0.1', 53140) sent a message over the size limit (44783/1024).
+15/10/2019 01:54:03 PM - INFO: Connection with ('127.0.0.1', 53140) closed due to violation.
+15/10/2019 01:54:05 PM - INFO: New connection received from ('127.0.0.1', 53142).
+15/10/2019 01:54:05 PM - WARNING: Client ('127.0.0.1', 53142) sent a message over the size limit (2036/1024).
+15/10/2019 01:54:05 PM - INFO: Connection with ('127.0.0.1', 53142) closed due to violation.
+15/10/2019 01:54:07 PM - INFO: New connection received from ('127.0.0.1', 53144).
+15/10/2019 01:54:07 PM - WARNING: Client ('127.0.0.1', 53144) sent a message over the size limit (14027/1024).
+15/10/2019 01:54:07 PM - INFO: Connection with ('127.0.0.1', 53144) closed due to violation.
+15/10/2019 01:54:09 PM - INFO: New connection received from ('127.0.0.1', 53146).
+15/10/2019 01:54:09 PM - WARNING: Client ('127.0.0.1', 53146) sent a message over the size limit (15341/1024).
+15/10/2019 01:54:09 PM - INFO: Connection with ('127.0.0.1', 53146) closed due to violation.
+15/10/2019 01:54:11 PM - INFO: New connection received from ('127.0.0.1', 53148).
+15/10/2019 01:54:11 PM - WARNING: Client ('127.0.0.1', 53148) sent a message over the size limit (5738/1024).
+15/10/2019 01:54:11 PM - INFO: Connection with ('127.0.0.1', 53148) closed due to violation.
+15/10/2019 01:54:13 PM - INFO: New connection received from ('127.0.0.1', 53150).
+15/10/2019 01:54:13 PM - WARNING: Client ('127.0.0.1', 53150) sent a message over the size limit (64608/1024).
+15/10/2019 01:54:13 PM - INFO: Connection with ('127.0.0.1', 53150) closed due to violation.
+15/10/2019 01:54:15 PM - INFO: New connection received from ('127.0.0.1', 53152).
+15/10/2019 01:54:15 PM - WARNING: Client ('127.0.0.1', 53152) sent a message over the size limit (58630/1024).
+15/10/2019 01:54:15 PM - INFO: Connection with ('127.0.0.1', 53152) closed due to violation.
+15/10/2019 01:54:17 PM - INFO: New connection received from ('127.0.0.1', 53154).
+15/10/2019 01:54:17 PM - WARNING: Client ('127.0.0.1', 53154) sent a message over the size limit (54891/1024).
+15/10/2019 01:54:17 PM - INFO: Connection with ('127.0.0.1', 53154) closed due to violation.
+15/10/2019 01:54:19 PM - INFO: New connection received from ('127.0.0.1', 53156).
+15/10/2019 01:54:19 PM - WARNING: Client ('127.0.0.1', 53156) sent a message over the size limit (62315/1024).
+15/10/2019 01:54:19 PM - INFO: Connection with ('127.0.0.1', 53156) closed due to violation.
+15/10/2019 01:54:21 PM - INFO: New connection received from ('127.0.0.1', 53158).
+15/10/2019 01:54:21 PM - WARNING: Client ('127.0.0.1', 53158) sent a message over the size limit (34326/1024).
+15/10/2019 01:54:21 PM - INFO: Connection with ('127.0.0.1', 53158) closed due to violation.
+15/10/2019 01:54:23 PM - INFO: New connection received from ('127.0.0.1', 53160).
+15/10/2019 01:54:23 PM - WARNING: Client ('127.0.0.1', 53160) sent a message over the size limit (63789/1024).
+15/10/2019 01:54:23 PM - INFO: Connection with ('127.0.0.1', 53160) closed due to violation.
+15/10/2019 01:54:25 PM - INFO: New connection received from ('127.0.0.1', 53162).
+15/10/2019 01:54:25 PM - WARNING: Client ('127.0.0.1', 53162) sent a message over the size limit (18242/1024).
+15/10/2019 01:54:25 PM - INFO: Connection with ('127.0.0.1', 53162) closed due to violation.
+15/10/2019 01:54:27 PM - INFO: New connection received from ('127.0.0.1', 53165).
+15/10/2019 01:54:27 PM - WARNING: Client ('127.0.0.1', 53165) sent a message over the size limit (31148/1024).
+15/10/2019 01:54:27 PM - INFO: Connection with ('127.0.0.1', 53165) closed due to violation.
+15/10/2019 01:54:29 PM - INFO: New connection received from ('127.0.0.1', 53167).
+15/10/2019 01:54:29 PM - WARNING: Client ('127.0.0.1', 53167) sent a message over the size limit (45899/1024).
+15/10/2019 01:54:29 PM - INFO: Connection with ('127.0.0.1', 53167) closed due to violation.
+15/10/2019 01:54:31 PM - INFO: New connection received from ('127.0.0.1', 53169).
+15/10/2019 01:54:31 PM - WARNING: Client ('127.0.0.1', 53169) sent a message over the size limit (25389/1024).
+15/10/2019 01:54:31 PM - INFO: Connection with ('127.0.0.1', 53169) closed due to violation.
+15/10/2019 01:54:33 PM - INFO: New connection received from ('127.0.0.1', 53171).
+15/10/2019 01:54:33 PM - WARNING: Client ('127.0.0.1', 53171) sent a message over the size limit (16018/1024).
+15/10/2019 01:54:33 PM - INFO: Connection with ('127.0.0.1', 53171) closed due to violation.
+15/10/2019 01:54:35 PM - INFO: New connection received from ('127.0.0.1', 53173).
+15/10/2019 01:54:35 PM - WARNING: Client ('127.0.0.1', 53173) sent a message over the size limit (47126/1024).
+15/10/2019 01:54:35 PM - INFO: Connection with ('127.0.0.1', 53173) closed due to violation.
+15/10/2019 01:54:37 PM - INFO: New connection received from ('127.0.0.1', 53175).
+15/10/2019 01:54:37 PM - WARNING: Client ('127.0.0.1', 53175) sent a message over the size limit (47406/1024).
+15/10/2019 01:54:37 PM - INFO: Connection with ('127.0.0.1', 53175) closed due to violation.
+15/10/2019 01:54:39 PM - INFO: New connection received from ('127.0.0.1', 53177).
+15/10/2019 01:54:39 PM - WARNING: Client ('127.0.0.1', 53177) sent a message over the size limit (7589/1024).
+15/10/2019 01:54:39 PM - INFO: Connection with ('127.0.0.1', 53177) closed due to violation.
+15/10/2019 01:54:41 PM - INFO: New connection received from ('127.0.0.1', 53179).
+15/10/2019 01:54:41 PM - WARNING: Client ('127.0.0.1', 53179) sent a message over the size limit (6178/1024).
+15/10/2019 01:54:41 PM - INFO: Connection with ('127.0.0.1', 53179) closed due to violation.
+15/10/2019 01:54:43 PM - INFO: New connection received from ('127.0.0.1', 53181).
+15/10/2019 01:54:43 PM - WARNING: Client ('127.0.0.1', 53181) sent a message over the size limit (62978/1024).
+15/10/2019 01:54:43 PM - INFO: Connection with ('127.0.0.1', 53181) closed due to violation.
+15/10/2019 01:54:45 PM - INFO: New connection received from ('127.0.0.1', 53184).
+15/10/2019 01:54:45 PM - WARNING: Client ('127.0.0.1', 53184) sent a message over the size limit (56396/1024).
+15/10/2019 01:54:45 PM - INFO: Connection with ('127.0.0.1', 53184) closed due to violation.
+15/10/2019 01:54:47 PM - INFO: New connection received from ('127.0.0.1', 53186).
+15/10/2019 01:54:47 PM - WARNING: Client ('127.0.0.1', 53186) sent a message over the size limit (1188/1024).
+15/10/2019 01:54:47 PM - INFO: Connection with ('127.0.0.1', 53186) closed due to violation.
+15/10/2019 01:54:49 PM - INFO: New connection received from ('127.0.0.1', 53188).
+15/10/2019 01:54:49 PM - WARNING: Client ('127.0.0.1', 53188) sent a message over the size limit (39326/1024).
+15/10/2019 01:54:49 PM - INFO: Connection with ('127.0.0.1', 53188) closed due to violation.
+15/10/2019 01:54:51 PM - INFO: New connection received from ('127.0.0.1', 53191).
+15/10/2019 01:54:51 PM - WARNING: Client ('127.0.0.1', 53191) sent a message over the size limit (34602/1024).
+15/10/2019 01:54:51 PM - INFO: Connection with ('127.0.0.1', 53191) closed due to violation.
+15/10/2019 01:54:53 PM - INFO: New connection received from ('127.0.0.1', 53193).
+15/10/2019 01:54:53 PM - WARNING: Client ('127.0.0.1', 53193) sent a message over the size limit (22132/1024).
+15/10/2019 01:54:53 PM - INFO: Connection with ('127.0.0.1', 53193) closed due to violation.
+15/10/2019 01:54:56 PM - INFO: New connection received from ('127.0.0.1', 53195).
+15/10/2019 01:54:56 PM - WARNING: Client ('127.0.0.1', 53195) sent a message over the size limit (19394/1024).
+15/10/2019 01:54:56 PM - INFO: Connection with ('127.0.0.1', 53195) closed due to violation.
+15/10/2019 01:54:58 PM - INFO: New connection received from ('127.0.0.1', 53197).
+15/10/2019 01:54:58 PM - WARNING: Client ('127.0.0.1', 53197) sent a message over the size limit (31051/1024).
+15/10/2019 01:54:58 PM - INFO: Connection with ('127.0.0.1', 53197) closed due to violation.
+15/10/2019 01:55:00 PM - INFO: New connection received from ('127.0.0.1', 53199).
+15/10/2019 01:55:00 PM - WARNING: Client ('127.0.0.1', 53199) sent a message over the size limit (8320/1024).
+15/10/2019 01:55:00 PM - INFO: Connection with ('127.0.0.1', 53199) closed due to violation.
+15/10/2019 01:55:02 PM - INFO: New connection received from ('127.0.0.1', 53202).
+15/10/2019 01:55:02 PM - WARNING: Client ('127.0.0.1', 53202) sent a message over the size limit (63104/1024).
+15/10/2019 01:55:02 PM - INFO: Connection with ('127.0.0.1', 53202) closed due to violation.
+15/10/2019 01:55:04 PM - INFO: New connection received from ('127.0.0.1', 53204).
+15/10/2019 01:55:04 PM - WARNING: Client ('127.0.0.1', 53204) sent a message over the size limit (6178/1024).
+15/10/2019 01:55:04 PM - INFO: Connection with ('127.0.0.1', 53204) closed due to violation.
+15/10/2019 01:55:06 PM - INFO: New connection received from ('127.0.0.1', 53206).
+15/10/2019 01:55:06 PM - WARNING: Client ('127.0.0.1', 53206) sent a message over the size limit (49791/1024).
+15/10/2019 01:55:06 PM - INFO: Connection with ('127.0.0.1', 53206) closed due to violation.
+15/10/2019 01:55:08 PM - INFO: New connection received from ('127.0.0.1', 53208).
+15/10/2019 01:55:08 PM - WARNING: Client ('127.0.0.1', 53208) sent a message over the size limit (54479/1024).
+15/10/2019 01:55:08 PM - INFO: Connection with ('127.0.0.1', 53208) closed due to violation.
+15/10/2019 01:55:10 PM - INFO: New connection received from ('127.0.0.1', 53212).
+15/10/2019 01:55:10 PM - WARNING: Client ('127.0.0.1', 53212) sent a message over the size limit (44787/1024).
+15/10/2019 01:55:10 PM - INFO: Connection with ('127.0.0.1', 53212) closed due to violation.
+15/10/2019 01:55:12 PM - INFO: New connection received from ('127.0.0.1', 53216).
+15/10/2019 01:55:12 PM - WARNING: Client ('127.0.0.1', 53216) sent a message over the size limit (35472/1024).
+15/10/2019 01:55:12 PM - INFO: Connection with ('127.0.0.1', 53216) closed due to violation.
+15/10/2019 01:55:14 PM - INFO: New connection received from ('127.0.0.1', 53218).
+15/10/2019 01:55:14 PM - WARNING: Client ('127.0.0.1', 53218) sent a message over the size limit (33530/1024).
+15/10/2019 01:55:14 PM - INFO: Connection with ('127.0.0.1', 53218) closed due to violation.
+15/10/2019 01:55:16 PM - INFO: New connection received from ('127.0.0.1', 53220).
+15/10/2019 01:55:16 PM - WARNING: Client ('127.0.0.1', 53220) sent a message over the size limit (18152/1024).
+15/10/2019 01:55:16 PM - INFO: Connection with ('127.0.0.1', 53220) closed due to violation.
+15/10/2019 01:55:18 PM - INFO: New connection received from ('127.0.0.1', 53222).
+15/10/2019 01:55:18 PM - WARNING: Client ('127.0.0.1', 53222) sent a message over the size limit (20683/1024).
+15/10/2019 01:55:18 PM - INFO: Connection with ('127.0.0.1', 53222) closed due to violation.
+15/10/2019 01:55:20 PM - INFO: New connection received from ('127.0.0.1', 53224).
+15/10/2019 01:55:20 PM - WARNING: Client ('127.0.0.1', 53224) sent a message over the size limit (12825/1024).
+15/10/2019 01:55:20 PM - INFO: Connection with ('127.0.0.1', 53224) closed due to violation.
+15/10/2019 01:55:22 PM - INFO: New connection received from ('127.0.0.1', 53226).
+15/10/2019 01:55:22 PM - WARNING: Client ('127.0.0.1', 53226) sent a message over the size limit (30799/1024).
+15/10/2019 01:55:22 PM - INFO: Connection with ('127.0.0.1', 53226) closed due to violation.
+15/10/2019 01:55:24 PM - INFO: New connection received from ('127.0.0.1', 53228).
+15/10/2019 01:55:24 PM - WARNING: Client ('127.0.0.1', 53228) sent a message over the size limit (64559/1024).
+15/10/2019 01:55:24 PM - INFO: Connection with ('127.0.0.1', 53228) closed due to violation.
+15/10/2019 01:55:26 PM - INFO: New connection received from ('127.0.0.1', 53230).
+15/10/2019 01:55:26 PM - WARNING: Client ('127.0.0.1', 53230) sent a message over the size limit (40130/1024).
+15/10/2019 01:55:26 PM - INFO: Connection with ('127.0.0.1', 53230) closed due to violation.
+15/10/2019 01:55:28 PM - INFO: New connection received from ('127.0.0.1', 53232).
+15/10/2019 01:55:28 PM - WARNING: Client ('127.0.0.1', 53232) sent a message over the size limit (56706/1024).
+15/10/2019 01:55:28 PM - INFO: Connection with ('127.0.0.1', 53232) closed due to violation.
+15/10/2019 01:55:30 PM - INFO: New connection received from ('127.0.0.1', 53234).
+15/10/2019 01:55:30 PM - WARNING: Client ('127.0.0.1', 53234) sent a message over the size limit (22299/1024).
+15/10/2019 01:55:30 PM - INFO: Connection with ('127.0.0.1', 53234) closed due to violation.
+15/10/2019 01:55:32 PM - INFO: New connection received from ('127.0.0.1', 53236).
+15/10/2019 01:55:32 PM - WARNING: Client ('127.0.0.1', 53236) sent a message over the size limit (9453/1024).
+15/10/2019 01:55:32 PM - INFO: Connection with ('127.0.0.1', 53236) closed due to violation.
+15/10/2019 01:55:34 PM - INFO: New connection received from ('127.0.0.1', 53238).
+15/10/2019 01:55:34 PM - WARNING: Client ('127.0.0.1', 53238) sent a message over the size limit (4311/1024).
+15/10/2019 01:55:34 PM - INFO: Connection with ('127.0.0.1', 53238) closed due to violation.
+15/10/2019 01:55:36 PM - INFO: New connection received from ('127.0.0.1', 53240).
+15/10/2019 01:55:36 PM - WARNING: Client ('127.0.0.1', 53240) sent a message over the size limit (62021/1024).
+15/10/2019 01:55:36 PM - INFO: Connection with ('127.0.0.1', 53240) closed due to violation.
+15/10/2019 01:55:38 PM - INFO: New connection received from ('127.0.0.1', 53242).
+15/10/2019 01:55:38 PM - WARNING: Client ('127.0.0.1', 53242) sent a message over the size limit (37612/1024).
+15/10/2019 01:55:38 PM - INFO: Connection with ('127.0.0.1', 53242) closed due to violation.
+15/10/2019 01:55:40 PM - INFO: New connection received from ('127.0.0.1', 53244).
+15/10/2019 01:55:40 PM - WARNING: Client ('127.0.0.1', 53244) sent a message over the size limit (38448/1024).
+15/10/2019 01:55:40 PM - INFO: Connection with ('127.0.0.1', 53244) closed due to violation.
+15/10/2019 01:55:42 PM - INFO: New connection received from ('127.0.0.1', 53246).
+15/10/2019 01:55:42 PM - WARNING: Client ('127.0.0.1', 53246) sent a message over the size limit (33380/1024).
+15/10/2019 01:55:42 PM - INFO: Connection with ('127.0.0.1', 53246) closed due to violation.
+15/10/2019 01:55:44 PM - INFO: New connection received from ('127.0.0.1', 53248).
+15/10/2019 01:55:44 PM - WARNING: Client ('127.0.0.1', 53248) sent a message over the size limit (34435/1024).
+15/10/2019 01:55:44 PM - INFO: Connection with ('127.0.0.1', 53248) closed due to violation.
+15/10/2019 01:55:46 PM - INFO: New connection received from ('127.0.0.1', 53250).
+15/10/2019 01:55:46 PM - WARNING: Client ('127.0.0.1', 53250) sent a message over the size limit (25716/1024).
+15/10/2019 01:55:46 PM - INFO: Connection with ('127.0.0.1', 53250) closed due to violation.
+15/10/2019 01:56:23 PM - INFO: New connection received from ('127.0.0.1', 53287).
+15/10/2019 05:27:24 PM - INFO: New connection received from ('127.0.0.1', 54417).
+15/10/2019 05:48:50 PM - INFO: New connection received from ('127.0.0.1', 54592).
+15/10/2019 05:49:29 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+16/10/2019 12:00:57 AM - INFO: New connection received from ('127.0.0.1', 55785).
+16/10/2019 12:00:57 AM - INFO: Client ('127.0.0.1', 55785) closed its connection.
+16/10/2019 12:01:57 AM - INFO: New connection received from ('127.0.0.1', 55786).
+16/10/2019 12:02:13 AM - INFO: Client ('127.0.0.1', 55786) closed its connection.
+16/10/2019 05:46:25 PM - INFO: New connection received from ('127.0.0.1', 52248).
+16/10/2019 05:47:54 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+16/10/2019 06:03:41 PM - INFO: New connection received from ('127.0.0.1', 52538).
+16/10/2019 06:05:33 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+16/10/2019 06:05:36 PM - INFO: New connection received from ('127.0.0.1', 52612).
+16/10/2019 06:06:16 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+16/10/2019 06:06:36 PM - INFO: New connection received from ('127.0.0.1', 52680).
+16/10/2019 06:06:43 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+16/10/2019 06:06:46 PM - INFO: New connection received from ('127.0.0.1', 52747).
+16/10/2019 06:07:07 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+16/10/2019 06:07:07 PM - INFO: New connection received from ('127.0.0.1', 52817).
+16/10/2019 06:07:31 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+16/10/2019 06:07:32 PM - INFO: New connection received from ('127.0.0.1', 52886).
+16/10/2019 06:07:54 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+16/10/2019 06:07:55 PM - INFO: New connection received from ('127.0.0.1', 52958).
+16/10/2019 06:09:04 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+16/10/2019 06:09:07 PM - INFO: New connection received from ('127.0.0.1', 53025).
+16/10/2019 06:09:07 PM - WARNING: Exception "<class 'TypeError'>" occurred in TCP/IP thread.
+16/10/2019 06:10:25 PM - INFO: New connection received from ('127.0.0.1', 53095).
+16/10/2019 06:10:25 PM - WARNING: Exception "<class 'TypeError'>" occurred in TCP/IP thread.
+16/10/2019 06:14:40 PM - INFO: New connection received from ('127.0.0.1', 53184).
+16/10/2019 06:23:03 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+23/10/2019 01:21:12 PM - INFO: New connection received from ('127.0.0.1', 53192).
+24/10/2019 12:48:03 PM - INFO: New connection received from ('127.0.0.1', 57367).
+24/10/2019 12:49:32 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+24/10/2019 12:49:36 PM - INFO: New connection received from ('127.0.0.1', 57437).
+24/10/2019 12:56:30 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+24/10/2019 12:56:44 PM - INFO: New connection received from ('127.0.0.1', 57658).
+24/10/2019 12:59:13 PM - INFO: New connection received from ('127.0.0.1', 57670).
+24/10/2019 12:59:16 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+24/10/2019 01:09:28 PM - INFO: New connection received from ('127.0.0.1', 58118).
+24/10/2019 01:09:39 PM - WARNING: Exception "<class 'NameError'>" occurred in TCP/IP thread.
+24/10/2019 04:26:38 PM - INFO: New connection received from ('127.0.0.1', 50540).
+24/10/2019 04:27:19 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+24/10/2019 04:27:24 PM - INFO: New connection received from ('127.0.0.1', 50609).
+24/10/2019 04:32:30 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+24/10/2019 04:32:33 PM - INFO: New connection received from ('127.0.0.1', 50680).
+24/10/2019 04:33:18 PM - INFO: New connection received from ('127.0.0.1', 50815).

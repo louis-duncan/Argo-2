@@ -1,6 +1,4 @@
-ADDRESS = "home.ltcomputing.co.uk"
-SEND_PORT = 31416
-GET_PORT = 31417
+SERVER_ADDR = ("localhost", 1234)  # ("home.ltcomputing.co.uk", 31416)
 
 ANY_ID = None
 
@@ -49,6 +47,8 @@ BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
+DARK_GREY = (120, 120, 120)
+LIGHT_GREY = (220, 220, 220)
 
 COLOURS = {
     "red": RED,

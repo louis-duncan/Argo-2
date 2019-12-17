@@ -1,3 +1,5 @@
+import os
+
 SERVER_ADDR = ("localhost", 1234)  # ("home.ltcomputing.co.uk", 31416)
 
 ANY_ID = None
@@ -77,3 +79,6 @@ GAME_OBJECT_TYPES = ("ship",
                      "station",
                      "rock",
                      "anomaly")
+
+UNKNOWN_SPRITE = os.path.join("sprites", "unknown.png")
+ERROR_SPRITE = os.path.join("sprites", "error.png")

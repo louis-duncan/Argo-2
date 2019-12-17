@@ -1,12 +1,14 @@
 import _thread
+import os
 import time
 from _classes import *
 from _globals import *
 import wx
+import wx.adv
 import wx.lib.scrolledpanel as scrolled
 
 
-OBJECT_BUTTON_ID = 9876
+OBJECT_BUTTON_ID = 98765
 
 
 class Manager(wx.Frame):
@@ -17,93 +19,114 @@ class Manager(wx.Frame):
                          style=wx.DEFAULT_FRAME_STYLE,  # & ~(wx.RESIZE_BORDER | wx.MAXIMIZE_BOX),
                          )
 
+        self.running = True
+
         self.selected_object = None
         self.entities = []
 
+        self.con = create_client_connection(SERVER_ADDR)
+
+        self.events_to_send = queue.SimpleQueue()
+
         self.default_button_size = (400, 60)
-        self.object_button_size = ((400 - wx.SystemSettings.GetMetric(wx.SYS_VSCROLL_X)) - 4, 60)
 
-        self.com = create_client_connection(SERVER_ADDR)
+        main_sizer = wx.BoxSizer(wx.HORIZONTAL)
 
-        self.canvas = wx.Panel(self)
-        self.canvas.SetBackgroundColour(WHITE)
-        self.canvas.SetMinSize((800, 800))
-
-        self.controls_panel = wx.Panel(self, size=(400, -1))
-
-        self.objects_panel = scrolled.ScrolledPanel(
-            self.controls_panel,
-            size=(self.controls_panel.GetSize()[0], -1),
-            style=wx.BORDER_SUNKEN
+        self.map_bg_panel = wx.Panel(
+            self,
+            size=(600, 600)
         )
-        self.objects_panel.SetBackgroundColour(LIGHT_GREY)
 
-        objects_sizer = wx.BoxSizer(wx.VERTICAL)
-
-        objects_sizer.Add(wx.Button(self.objects_panel, OBJECT_BUTTON_ID, label="A thing", size=self.object_button_size))
-
-        scroll_bar_sizer = wx.BoxSizer(wx.HORIZONTAL)
-        scroll_bar_sizer.Add(objects_sizer, 1, wx.EXPAND)
-
-        self.objects_panel.SetSizer(scroll_bar_sizer)
-        self.objects_panel.SetAutoLayout(1)
-        self.objects_panel.SetupScrolling(False, True)
+        self.map_panel = wx.Panel(
+            self.map_bg_panel,
+            size=(-1, -1)
+        )
+        self.map_panel.SetBackgroundColour(BLACK)
 
         controls_sizer = wx.BoxSizer(wx.VERTICAL)
-        controls_sizer.AddSpacer(100)
-        controls_sizer.Add(self.objects_panel, 1, wx.EXPAND)
-        controls_sizer.AddSpacer(200)
 
-        self.controls_panel.SetSizer(controls_sizer)
+        control_panel_width = 300
 
-        # Create a sizer to manage the Canvas and control panel.
-        main_sizer = wx.BoxSizer(wx.HORIZONTAL)
-        main_sizer.Add(self.canvas, 1, wx.EXPAND)
-        main_sizer.Add(self.controls_panel, 0, wx.EXPAND)
+        self.control_panel = wx.Panel(
+            self,
+            size=(control_panel_width, -1)
+        )
+
+        self.entity_buttons_window = scrolled.ScrolledPanel(
+            self.control_panel,
+            size=(control_panel_width, -1),
+            style=wx.TAB_TRAVERSAL | wx.SUNKEN_BORDER,
+        )
+
+        self.entity_buttons_window.SetBackgroundColour((255, 255, 255))
+        self.entity_buttons_sizer = wx.BoxSizer(wx.VERTICAL)
+        self.entity_buttons_window.SetSizer(self.entity_buttons_sizer)
+        self.entity_buttons_window.SetAutoLayout(True)
+        self.entity_buttons_window.SetupScrolling(False, True)
+
+        controls_sizer.Add(
+            self.entity_buttons_window,
+            1,
+            wx.EXPAND
+        )
+
+        main_sizer.Add(
+            self.map_bg_panel,
+            1,
+            wx.EXPAND
+        )
+
+        self.control_panel.SetSizerAndFit(controls_sizer)
+
+        main_sizer.Add(
+            self.control_panel,
+            0,
+            wx.EXPAND
+        )
 
         self.SetSizerAndFit(main_sizer)
 
+        self.timer = wx.Timer(self)
+        self.timer.Start(100)
+
         self.Bind(wx.EVT_BUTTON, self.button_press)
-        self.Bind(wx.EVT_SIZING, self.on_resize)
         self.Bind(wx.EVT_CLOSE, self.on_close)
+        self.Bind(wx.EVT_TIMER, self.timer_handler)
+        self.Bind(wx.EVT_SIZE, self.on_resize)
+        self.Bind(wx.EVT_MAXIMIZE, self.on_resize)
 
         self.Show(True)
 
-        #self.get_state_update()
-
-    def on_close(self, e=None):
-        self.Destroy()
-
-    def on_resize(self, e=None):
-        if e is not None:
-            e.Skip()
+    def timer_handler(self, e=None):
+        if self.con is None:
+            if self.timer.IsRunning():
+                self.timer.Stop()
+                self.SetTitle(self.GetTitle() + " - No Connection")
+        else:
+            try:
+                self.entities = self.con.get_update()
+            except ConnectionError:
+                self.con = None
 
     def button_press(self, e=None):
-        if e is None:
-            return
-        if e.EventObject.GetId() == OBJECT_BUTTON_ID:
-            self.select_object(e.EventObject.GetLabel())
-        else:
-            pass
-
-    def select_object(self, name):
-        for entity in self.entities:
-            if entity.name == name:
-                self.selected_object = entity
-                break
-        else:
-            self.selected_object = None
-
-    def get_state_update(self):
-        self.com.object_send({"action": "update_request"})
-        resp = self.com.object_recv()
-        if type(resp) is not None and "entities" in resp.keys():
-            self.entities = resp["entities"]
-        else:
-            raise ConnectionError
-
-    def send_action(self):
         pass
+
+    def on_close(self, e=None):
+        self.running = False
+        self.timer.Stop()
+        self.Destroy()
+
+    def on_resize(self, e: wx.Event):
+        wh = self.map_bg_panel.GetSize()
+        s = min(wh)
+        self.map_panel.SetSize((s, s))
+        self.map_panel.SetPosition((int((wh[0] - s) / 2), 0))
+        e.Skip()
+        
+
+
+    def __del__(self):
+        self.timer.Stop()
 
 
 def scale_bitmap(bitmap, width, height):

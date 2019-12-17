@@ -301,37 +301,14 @@ class ServerCommunicator:
         try:
             run = True
             while run:
-                msg_len = con.recv(2)
-                if msg_len == b"":
+                msg_data = con.recv(2048)
+
+                if msg_data == b"":
                     logging.info("Client {} closed its connection.".format(peer_name))
                     self._connection_sockets.remove(con)
                     break
 
-                msg_len = (msg_len[0] * 256) + msg_len[1]
-
-                if msg_len > self.msg_size_limit:
-                    logging.warning("Client {} sent a message over the size limit ({}/{}).".format(
-                        peer_name,
-                        msg_len,
-                        self.msg_size_limit
-                    ))
-                    con.close()
-                    self._connection_sockets.remove(con)
-                    logging.info("Connection with {} closed due to violation.".format(peer_name))
-                    run = False
-                    continue
-
-                msg_data = con.recv(msg_len).decode()
-                if len(msg_data) != msg_len:
-                    logging.warning("Client {} sent a runt message (length: {}).".format(
-                        peer_name,
-                        msg_len
-                    ))
-                    con.close()
-                    self._connection_sockets.remove(con)
-                    logging.info("Connection with {} closed due to violation.".format(peer_name))
-                    run = False
-                    continue
+                msg_data = msg_data.decode()
 
                 try:
                     msg_data = json.loads(msg_data)
@@ -353,10 +330,23 @@ class ServerCommunicator:
                     run = False
                     continue
 
-                if "action" in msg_data.keys() and msg_data["action"] == "update_request":
-                    self.send_data(con, self.parent.get_state())
+                if "action" in msg_data.keys():
+                    if msg_data["action"] == "update_request":
+                        self.send_data(con, self.parent.get_state())
+                    elif msg_data["action"] == "event":
+                        self.parent.events_queue.put(msg_data["data"])
+                    else:
+                        con.close()
+                        self._connection_sockets.remove(con)
+                        logging.warning("Client {} sent a message of invalid action.".format(peer_name))
+                        run = False
+                        continue
                 else:
-                    self.parent.events_queue.put(msg_data)
+                    con.close()
+                    self._connection_sockets.remove(con)
+                    logging.warning("Client {} sent a message missing 'action'.".format(peer_name))
+                    run = False
+                    continue
 
         except Exception as e:
             try:
@@ -367,30 +357,33 @@ class ServerCommunicator:
 
     def send_data(self, con, data):
         raw_data = json.dumps(make_json_friendly(data)).encode()
-        len_bytes = bytes([len(raw_data) // 256, len(raw_data) % 256])
-        con.send(len_bytes)
         con.send(raw_data)
 
 
 class ClientCommunicator(socket.socket):
     def object_send(self, data):
         raw = json.dumps(data).encode()
-        len_bytes = bytes([len(raw) // 256, len(raw) % 256])
-        super().send(len_bytes)
         super().send(raw)
 
     def object_recv(self):
-        msg_len = self.recv(2)
-        if msg_len == b"":
+        received_bytes = self.recv(2048)
+        if received_bytes == b"":
             return
-        received_bytes = self.recv((msg_len[0] * 256) + msg_len[1])
-        return object_from_decoded_json(json.loads(received_bytes.decode()), None)
+        else:
+            return object_from_decoded_json(json.loads(received_bytes.decode()), None)
+
+    def get_update(self):
+        self.object_send({"action": "update_request"})
+        return self.object_recv()
 
 
 def create_client_connection(addr):
     con = ClientCommunicator()
-    con.connect(addr)
-    return con
+    try:
+        con.connect(addr)
+        return con
+    except ConnectionError:
+        return None
 
 
 def make_json_friendly(o):
@@ -420,8 +413,18 @@ def object_from_decoded_json(o, parent=None):
     if type(o) is dict:
         if "__type__" in o.keys():
             o_type = o.pop("__type__")
-            kwargs = object_from_decoded_json(o)
-            new_object = globals()[o_type](parent=parent, **kwargs)
+            if o_type in ("Entity",
+                          "Ship",
+                          "Station",
+                          "Debris",
+                          "Trail",
+                          "ShipSystem",
+                          "SystemModifier",
+                          ):
+                kwargs = object_from_decoded_json(o)
+                new_object = globals()[o_type](parent=parent, **kwargs)
+            else:
+                new_object = None
         else:
             new_object = {key: object_from_decoded_json(value) for (key, value) in o.items()}
     elif type(o) in (str, int, float, bool, type(None)):
@@ -431,3 +434,10 @@ def object_from_decoded_json(o, parent=None):
     else:
         new_object = None
     return new_object
+
+
+def get_colour_name(col):
+    col = tuple(col)
+    for c in COLOURS:
+        if COLOURS[c] == col:
+            return c

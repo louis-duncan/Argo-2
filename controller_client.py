@@ -18,6 +18,7 @@ class Manager(wx.Frame):
                          title,
                          style=wx.DEFAULT_FRAME_STYLE,  # & ~(wx.RESIZE_BORDER | wx.MAXIMIZE_BOX),
                          )
+        self._title = title
 
         self.running = True
 
@@ -36,6 +37,7 @@ class Manager(wx.Frame):
             self,
             size=(600, 600)
         )
+        self.map_bg_panel.SetBackgroundColour(BLUE)
 
         self.map_panel = wx.Panel(
             self.map_bg_panel,
@@ -92,21 +94,19 @@ class Manager(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.button_press)
         self.Bind(wx.EVT_CLOSE, self.on_close)
         self.Bind(wx.EVT_TIMER, self.timer_handler)
-        self.Bind(wx.EVT_SIZE, self.on_resize)
-        self.Bind(wx.EVT_MAXIMIZE, self.on_resize)
+        #self.Bind(wx.EVT_SIZE, self.on_resize)
 
         self.Show(True)
 
     def timer_handler(self, e=None):
         if self.con is None:
-            if self.timer.IsRunning():
-                self.timer.Stop()
-                self.SetTitle(self.GetTitle() + " - No Connection")
+            self.SetTitle(self._title + " - No Connection")
         else:
             try:
                 self.entities = self.con.get_update()
             except ConnectionError:
                 self.con = None
+        self.on_resize()
 
     def button_press(self, e=None):
         pass
@@ -116,14 +116,13 @@ class Manager(wx.Frame):
         self.timer.Stop()
         self.Destroy()
 
-    def on_resize(self, e: wx.Event):
+    def on_resize(self, e=None):
         wh = self.map_bg_panel.GetSize()
         s = min(wh)
         self.map_panel.SetSize((s, s))
-        self.map_panel.SetPosition((int((wh[0] - s) / 2), 0))
-        e.Skip()
-        
-
+        self.map_panel.SetPosition((int((wh[0] - s) / 2), int((wh[1] - s) / 2)))
+        if e is not None:
+            e.Skip()
 
     def __del__(self):
         self.timer.Stop()

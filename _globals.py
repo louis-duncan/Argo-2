@@ -80,5 +80,20 @@ GAME_OBJECT_TYPES = ("ship",
                      "rock",
                      "anomaly")
 
-UNKNOWN_SPRITE = os.path.join("sprites", "unknown.png")
-ERROR_SPRITE = os.path.join("sprites", "error.png")
+SPRITE_DIR = "sprites"
+UNKNOWN_SPRITE = os.path.abspath(os.path.join(SPRITE_DIR, "unknown.png"))
+ERROR_SPRITE = os.path.abspath(os.path.join(SPRITE_DIR, "error.png"))
+
+
+def get_sprite_path(object_type, colour):
+    path = os.path.join(
+        SPRITE_DIR,
+        "{}_{}.png".format(
+            object_type.lower(),
+            colour.lower()
+        )
+    )
+    if os.path.exists(path):
+        return os.path.abspath(path)
+    else:
+        return os.path.abspath(ERROR_SPRITE)

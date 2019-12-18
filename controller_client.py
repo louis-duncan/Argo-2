@@ -9,6 +9,58 @@ import wx.lib.scrolledpanel as scrolled
 
 
 OBJECT_BUTTON_ID = 98765
+GRID_SIZE = 20
+
+
+class MapPanel(wx.Window):
+    """Draw a line to a panel."""
+
+    def __init__(self, parent, size):
+        self.parent = parent
+        super().__init__(parent=parent, size=size)
+        self.Bind(wx.EVT_PAINT, self.re_draw)
+
+    def re_draw(self, event=None):
+        self.Refresh(True)
+        dc = wx.PaintDC(self)
+        dc.Clear()
+
+        size = [s - 2 for s in self.GetSize()]
+        col_width = size[0] / (GRID_SIZE + 1)
+
+        dc.SetFont(
+            wx.Font(
+                int(col_width * 0.4),
+                wx.FONTFAMILY_DEFAULT,
+                wx.FONTSTYLE_NORMAL,
+                wx.FONTWEIGHT_NORMAL,
+                False
+            )
+        )
+        dc.SetTextForeground(GREEN)
+        dc.SetTextBackground(BLACK)
+
+        dc.SetPen(wx.Pen(GREEN))
+        for p in range(GRID_SIZE + 1):
+            pos = col_width * (p + 1)
+            dc.DrawLine(pos, col_width, pos, size[1])
+            dc.DrawLine(col_width, pos, size[0], pos)
+            if p > 0:
+                num_size = dc.GetTextExtent(str(p))
+                letter_size = dc.GetTextExtent(chr(64 + p))
+                dc.DrawText(
+                    str(p),
+                    (col_width * p) + ((col_width - num_size.GetWidth()) / 2),
+                    (col_width - num_size.GetHeight()) * 0.75,
+                )
+                dc.DrawText(
+                    chr(64 + p),
+                    (col_width - letter_size.GetWidth()) * 0.75,
+                    (col_width * p) + (col_width - letter_size.GetHeight()) / 2,
+                )
+
+        for e in self.parent.GetParent().entities:
+            get_sprite_path(e.type_name, e.colour)
 
 
 class Manager(wx.Frame):
@@ -37,9 +89,9 @@ class Manager(wx.Frame):
             self,
             size=(600, 600)
         )
-        self.map_bg_panel.SetBackgroundColour(BLUE)
+        self.map_bg_panel.SetBackgroundColour(BLACK)
 
-        self.map_panel = wx.Panel(
+        self.map_panel = MapPanel(
             self.map_bg_panel,
             size=(-1, -1)
         )

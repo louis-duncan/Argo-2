@@ -83,7 +83,7 @@ class Entity:
                  parent=None,
                  entity_id=ANY_ID,
                  name="no_name",
-                 colour=BLACK,
+                 colour="black",
                  pos=(0, 0),
                  facing=NORTH,
                  created_by=None,
@@ -127,6 +127,10 @@ class Entity:
     def tick(self):
         if (self.ttl is not None) and (self.created_time + self.ttl >= time.time()):
             self.destroy()
+
+    @property
+    def type_name(self):
+        return self.__class__.__name__
 
 
 class Ship(Entity):

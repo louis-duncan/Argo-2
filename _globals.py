@@ -3,6 +3,11 @@ import os
 SERVER_ADDR = ("localhost", 1234)  # ("home.ltcomputing.co.uk", 31416)
 
 ANY_ID = None
+ID_UP = 31415
+ID_RIGHT = 31416
+ID_DOWN = 31417
+ID_LEFT = 31418
+ID_DELETE = 31419
 
 INCREASE = 1
 DECREASE = -1

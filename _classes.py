@@ -1,4 +1,6 @@
+import datetime
 import random
+import binascii
 import time
 import queue
 import socket
@@ -6,6 +8,8 @@ import threading
 import json
 import logging
 import sys
+from typing import Optional, Any
+
 from _globals import *
 
 
@@ -28,54 +32,6 @@ class Clock:
             delay = 0
         time.sleep(delay)
         self._last_tick_time = time.time()
-
-
-class Game:
-    def __init__(self):
-        self.entities = []
-        self.events_queue = queue.SimpleQueue()
-
-        self.Communicator = ServerCommunicator(self, SERVER_ADDR)
-
-        self._tick_thread = threading.Thread(target=self.tick_loop, args=tuple())
-        self._tick_thread.start()
-
-    def get_entities(self, pos):
-        results = []
-        for e in self.entities:
-            if e.pos[0] == pos[0] and e.pos[1] == pos[1]:
-                results.append(e)
-        return results
-
-    def tick_loop(self, rate=30):
-        clock = Clock()
-        while True:
-            self.handle_events()
-            for e in self.entities:
-                e.tick()
-            clock.tick(rate)
-
-    def handle_events(self):
-        event: dict
-        for event in range(self.events_queue.qsize()):
-            print(self.events_queue.get())
-
-            try:
-                if event["action"] == "move":
-                    pass
-                elif event["action"] == "turn":
-                    pass
-                elif event["action"] == "destroy":
-                    pass
-                elif event["action"] == "fire_weapon":
-                    pass
-                else:
-                    print("Unknown action", event["action"])
-            except KeyError as err:
-                print("Bad key:", err.args[0])
-
-    def get_state(self):
-        return {"entities": self.entities}
 
 
 class Entity:
@@ -257,6 +213,140 @@ class Station(Entity):
         super().tick()
 
 
+class Game:
+    def __init__(self):
+        self.entities = []
+        self.events_queue = queue.SimpleQueue()
+
+        self.Communicator = ServerCommunicator(self, SERVER_ADDR)
+
+        self._tick_thread = threading.Thread(target=self.tick_loop, args=tuple())
+        self._tick_thread.start()
+
+    def get_entity(self, entity_id: int):
+        for e in self.entities:
+            if e.entity_id == entity_id:
+                return e
+        else:
+            return None
+
+    def get_entities(self, pos):
+        results = []
+        for e in self.entities:
+            if e.pos[0] == pos[0] and e.pos[1] == pos[1]:
+                results.append(e)
+        return results
+
+    def tick_loop(self, rate=30):
+        clock = Clock()
+        while True:
+            self.handle_events()
+            for e in self.entities:
+                e.tick()
+            clock.tick(rate)
+
+    def handle_events(self):
+        event: dict
+        for event in range(self.events_queue.qsize()):
+            print(self.events_queue.get())
+            if event["action"] == "create":
+                self.create_entity(event["value"], event["source"])
+            elif event["action"] == "move":
+                self.move_entity(event["value"])
+            elif event["action"] == "turn":
+                pass
+            elif event["action"] == "destroy":
+                self.destroy_entity(event["value"])
+            elif event["action"] == "fire_weapon":
+                pass
+            elif event["action"] == "undo":
+                pass
+            else:
+                print("Unknown action.")
+
+    def destroy_entity(self, values):
+        e = self.get_entity(values["entity_id"])
+        if e is not None:
+            e.destroy()
+
+    def create_entity(self, values, source):
+        new = None
+        if values["type"] == "ship":
+            new = Ship(
+                parent=self,
+                entity_id=self.get_new_id(),
+                name=values["name"],
+                colour=values["colour"],
+                pos=values["pos"],
+                facing=values["direction"],
+                created_by=source,
+                created_time=datetime.datetime.now(),
+                ttl=None
+            )
+        elif values["type"] == "debris":
+            new = Debris(
+                parent=self,
+                entity_id=self.get_new_id(),
+                name=values["name"],
+                colour=values["colour"],
+                pos=values["pos"],
+                facing=values["direction"],
+                created_by=source,
+                created_time=datetime.datetime.now(),
+                ttl=values["ttl"]
+            )
+        elif values["type"] == "trail":
+            new = Trail(
+                parent=self,
+                entity_id=self.get_new_id(),
+                name=values["name"],
+                colour=values["colour"],
+                pos=values["pos"],
+                facing=values["direction"],
+                created_by=source,
+                created_time=datetime.datetime.now(),
+                ttl=None
+            )
+        elif values["station"] == "station":
+            new = Station(
+                parent=self,
+                entity_id=self.get_new_id(),
+                name=values["name"],
+                colour=values["colour"],
+                pos=values["pos"],
+                facing=values["direction"],
+                created_by=source,
+                created_time=datetime.datetime.now(),
+                ttl=None
+            )
+        else:
+            pass
+        if new is not None:
+            self.entities.append(new)
+
+    def move_entity(self, values):
+        e: Entity = self.get_entity(values["entity_id"])
+        if e is not None:
+            e.move(values["direction"])
+
+    def turn_entity(self, values):
+        e: Entity = self.get_entity(values["entity_id"])
+        if e is not None:
+            e.turn(values["direction"])
+        
+    def get_state(self):
+        return {"entities": self.entities}
+
+    def get_new_id(self):
+        done = False
+        new = None
+        while not done:
+            new = random.randint(10000000, 99999999)
+            done = not (new in [e.entity_id for e in self.entities])
+        assert new is not None
+        return new
+
+
 class CommunicationError(Exception):
     pass
 
@@ -334,21 +424,23 @@ class ServerCommunicator:
                     run = False
                     continue
 
-                if "action" in msg_data.keys():
-                    if msg_data["action"] == "update_request":
+                try:
+                    if msg_data["com_type"] == "update_request":
                         self.send_data(con, self.parent.get_state())
-                    elif msg_data["action"] == "event":
-                        self.parent.events_queue.put(msg_data["data"])
+                    elif msg_data["com_type"] == "event":
+                        new_event = msg_data["data"]
+                        new_event["source"] = peer_name
+                        self.parent.events_queue.put(new_event)
                     else:
                         con.close()
                         self._connection_sockets.remove(con)
                         logging.warning("Client {} sent a message of invalid action.".format(peer_name))
                         run = False
                         continue
-                else:
+                except KeyError:
                     con.close()
                     self._connection_sockets.remove(con)
-                    logging.warning("Client {} sent a message missing 'action'.".format(peer_name))
+                    logging.warning("KeyError in received data.".format(peer_name))
                     run = False
                     continue
 
@@ -377,8 +469,17 @@ class ClientCommunicator(socket.socket):
             return object_from_decoded_json(json.loads(received_bytes.decode()), None)
 
     def get_update(self):
-        self.object_send({"action": "update_request"})
+        self.object_send({"com_type": "update_request"})
         return self.object_recv()
+
+    def send_update(self, action, value=None):
+        self.object_send(
+            {
+                "com_type": "event",
+                "action": action,
+                "value": value
+            }
+        )
 
 
 def create_client_connection(addr):
@@ -404,6 +505,11 @@ def make_json_friendly(o):
         new_o = list(o)
         for i in range(len(new_o)):
             new_o[i] = make_json_friendly(new_o[i])
+    elif type(o) is datetime.datetime:
+        new_o = {
+            "__type__": "datetime",
+            "value": o.timestamp()
+        }
     else:
         new_o = dict(o.__dict__)
         if "parent" in new_o.keys():
@@ -427,6 +533,8 @@ def object_from_decoded_json(o, parent=None):
                           ):
                 kwargs = object_from_decoded_json(o)
                 new_object = globals()[o_type](parent=parent, **kwargs)
+            elif o_type == "datetime":
+                new_object = datetime.datetime.fromtimestamp(o["value"])
             else:
                 new_object = None
         else:
@@ -445,3 +553,14 @@ def get_colour_name(col):
     for c in COLOURS:
         if COLOURS[c] == col:
             return c
+
+
+def test():
+    con = ClientCommunicator()
+    con.connect(("localhost", 1234))
+    data = con.get_update()
+    print(data)
+
+
+if __name__ == '__main__':
+    test()

@@ -653,3 +653,89 @@
 22/12/2019 12:58:42 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
 22/12/2019 12:58:45 AM - INFO: New connection received from ('127.0.0.1', 62657).
 22/12/2019 01:00:36 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+26/12/2019 10:52:10 PM - INFO: New connection received from ('127.0.0.1', 53988).
+26/12/2019 10:52:24 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+26/12/2019 10:53:03 PM - INFO: New connection received from ('127.0.0.1', 54072).
+26/12/2019 10:53:16 PM - INFO: Client ('127.0.0.1', 54072) closed its connection.
+26/12/2019 10:53:45 PM - INFO: New connection received from ('127.0.0.1', 54082).
+26/12/2019 10:53:53 PM - INFO: Client ('127.0.0.1', 54082) closed its connection.
+26/12/2019 10:55:32 PM - INFO: New connection received from ('127.0.0.1', 54114).
+26/12/2019 11:12:12 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+26/12/2019 11:12:12 PM - INFO: New connection received from ('127.0.0.1', 54426).
+26/12/2019 11:12:23 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+26/12/2019 11:13:13 PM - INFO: New connection received from ('127.0.0.1', 54451).
+26/12/2019 11:14:11 PM - INFO: Client ('127.0.0.1', 54451) closed its connection.
+26/12/2019 11:14:51 PM - INFO: New connection received from ('127.0.0.1', 54484).
+26/12/2019 11:15:05 PM - INFO: Client ('127.0.0.1', 54484) closed its connection.
+26/12/2019 11:15:29 PM - INFO: New connection received from ('127.0.0.1', 54495).
+26/12/2019 11:15:33 PM - INFO: Client ('127.0.0.1', 54495) closed its connection.
+26/12/2019 11:16:14 PM - INFO: New connection received from ('127.0.0.1', 54508).
+26/12/2019 11:16:19 PM - INFO: Client ('127.0.0.1', 54508) closed its connection.
+26/12/2019 11:16:55 PM - INFO: New connection received from ('127.0.0.1', 54520).
+26/12/2019 11:17:12 PM - INFO: Client ('127.0.0.1', 54520) closed its connection.
+26/12/2019 11:51:38 PM - INFO: New connection received from ('127.0.0.1', 55161).
+26/12/2019 11:51:42 PM - INFO: Client ('127.0.0.1', 55161) closed its connection.
+26/12/2019 11:53:07 PM - INFO: New connection received from ('127.0.0.1', 55188).
+26/12/2019 11:53:25 PM - INFO: Client ('127.0.0.1', 55188) closed its connection.
+26/12/2019 11:54:00 PM - INFO: New connection received from ('127.0.0.1', 55202).
+26/12/2019 11:54:08 PM - INFO: Client ('127.0.0.1', 55202) closed its connection.
+26/12/2019 11:54:40 PM - INFO: New connection received from ('127.0.0.1', 55215).
+26/12/2019 11:55:15 PM - INFO: Client ('127.0.0.1', 55215) closed its connection.
+26/12/2019 11:55:17 PM - INFO: New connection received from ('127.0.0.1', 55229).
+26/12/2019 11:56:13 PM - INFO: Client ('127.0.0.1', 55229) closed its connection.
+26/12/2019 11:56:15 PM - INFO: New connection received from ('127.0.0.1', 55248).
+26/12/2019 11:56:53 PM - INFO: Client ('127.0.0.1', 55248) closed its connection.
+26/12/2019 11:57:07 PM - INFO: New connection received from ('127.0.0.1', 55264).
+26/12/2019 11:57:15 PM - INFO: Client ('127.0.0.1', 55264) closed its connection.
+26/12/2019 11:57:40 PM - INFO: New connection received from ('127.0.0.1', 55274).
+26/12/2019 11:58:11 PM - INFO: Client ('127.0.0.1', 55274) closed its connection.
+27/12/2019 12:06:18 AM - INFO: New connection received from ('127.0.0.1', 55438).
+27/12/2019 12:06:24 AM - INFO: Client ('127.0.0.1', 55438) closed its connection.
+27/12/2019 12:08:43 AM - INFO: New connection received from ('127.0.0.1', 55483).
+27/12/2019 12:08:47 AM - INFO: Client ('127.0.0.1', 55483) closed its connection.
+27/12/2019 12:09:15 AM - INFO: New connection received from ('127.0.0.1', 55496).
+27/12/2019 12:09:19 AM - WARNING: KeyError in received data.
+27/12/2019 12:12:08 AM - INFO: New connection received from ('127.0.0.1', 55620).
+27/12/2019 12:19:34 AM - INFO: New connection received from ('127.0.0.1', 55824).
+27/12/2019 12:21:10 AM - INFO: New connection received from ('127.0.0.1', 55919).
+27/12/2019 12:23:30 AM - INFO: New connection received from ('127.0.0.1', 56094).
+27/12/2019 12:23:40 AM - INFO: Client ('127.0.0.1', 56094) closed its connection.
+27/12/2019 12:24:30 AM - INFO: New connection received from ('127.0.0.1', 56111).
+27/12/2019 12:24:48 AM - INFO: Client ('127.0.0.1', 56111) closed its connection.
+27/12/2019 12:28:57 AM - INFO: New connection received from ('127.0.0.1', 56190).
+27/12/2019 12:29:20 AM - INFO: Client ('127.0.0.1', 56190) closed its connection.
+27/12/2019 12:29:34 AM - INFO: New connection received from ('127.0.0.1', 56201).
+27/12/2019 12:29:37 AM - INFO: Client ('127.0.0.1', 56201) closed its connection.
+27/12/2019 12:35:52 AM - INFO: New connection received from ('127.0.0.1', 56332).
+27/12/2019 12:35:58 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 12:41:19 AM - INFO: New connection received from ('127.0.0.1', 56430).
+27/12/2019 12:43:30 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 12:48:58 AM - INFO: New connection received from ('127.0.0.1', 56698).
+27/12/2019 12:49:30 AM - INFO: New connection received from ('127.0.0.1', 56773).
+27/12/2019 12:49:49 AM - INFO: Client ('127.0.0.1', 56773) closed its connection.
+27/12/2019 12:50:11 AM - INFO: New connection received from ('127.0.0.1', 56787).
+27/12/2019 12:50:24 AM - INFO: Client ('127.0.0.1', 56787) closed its connection.
+27/12/2019 12:50:42 AM - INFO: New connection received from ('127.0.0.1', 56796).
+27/12/2019 12:50:49 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 12:50:59 AM - INFO: New connection received from ('127.0.0.1', 56802).
+27/12/2019 12:51:07 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 12:52:46 AM - INFO: New connection received from ('127.0.0.1', 56898).
+27/12/2019 12:53:40 AM - INFO: Client ('127.0.0.1', 56898) closed its connection.
+27/12/2019 12:57:18 AM - INFO: New connection received from ('127.0.0.1', 56991).
+27/12/2019 12:57:22 AM - INFO: Client ('127.0.0.1', 56991) closed its connection.
+27/12/2019 12:59:22 AM - INFO: New connection received from ('127.0.0.1', 57091).
+27/12/2019 01:00:04 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 01:02:19 AM - INFO: New connection received from ('127.0.0.1', 57280).
+27/12/2019 01:03:02 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 01:03:03 AM - INFO: New connection received from ('127.0.0.1', 57295).
+27/12/2019 01:03:38 AM - INFO: New connection received from ('127.0.0.1', 57374).
+27/12/2019 01:04:45 AM - INFO: New connection received from ('127.0.0.1', 57460).
+27/12/2019 01:06:15 AM - INFO: New connection received from ('127.0.0.1', 57553).
+27/12/2019 01:12:23 AM - INFO: New connection received from ('127.0.0.1', 57790).
+27/12/2019 01:12:49 AM - INFO: Client ('127.0.0.1', 57790) closed its connection.
+27/12/2019 01:13:19 AM - INFO: New connection received from ('127.0.0.1', 57807).
+27/12/2019 01:13:21 AM - INFO: Client ('127.0.0.1', 57807) closed its connection.
+27/12/2019 01:13:33 AM - INFO: New connection received from ('127.0.0.1', 57943).
+27/12/2019 01:14:00 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 01:15:46 AM - INFO: New connection received from ('127.0.0.1', 58117).
+27/12/2019 01:16:17 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.

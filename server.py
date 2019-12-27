@@ -7,7 +7,7 @@ main_game.create_entity(
         "name": "Aloha Oe",
         "colour": "blue",
         "pos": (5, 6),
-        "direction": "1",
+        "direction": 1,
         "ttl": None
     },
     "local"

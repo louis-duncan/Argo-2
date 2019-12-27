@@ -8,6 +8,9 @@ ID_RIGHT = 31416
 ID_DOWN = 31417
 ID_LEFT = 31418
 ID_DELETE = 31419
+OBJECT_BUTTON_ID = 98765
+
+GRID_SIZE = 20
 
 INCREASE = 1
 DECREASE = -1
@@ -88,6 +91,7 @@ GAME_OBJECT_TYPES = ("ship",
 SPRITE_DIR = "sprites"
 UNKNOWN_SPRITE = os.path.abspath(os.path.join(SPRITE_DIR, "unknown.png"))
 ERROR_SPRITE = os.path.abspath(os.path.join(SPRITE_DIR, "error.png"))
+GRID_SPRITE = os.path.abspath(os.path.join(SPRITE_DIR, "grid.png"))
 
 
 def get_sprite_path(object_type, colour):

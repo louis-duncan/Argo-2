@@ -12,7 +12,6 @@ from typing import Optional, Any
 
 from _globals import *
 
-
 # noinspection SpellCheckingInspection
 logging.basicConfig(
     filename="server_log.log",
@@ -57,24 +56,23 @@ class Entity:
             self.created_time = time.time()
         self.ttl = ttl
 
-        if self.entity_id is None:
-            self.entity_id = random.randint(10000, 99999)
-
     def destroy(self):
         self.parent.entities.remove(self)
 
     def move(self, direction=FORWARD):
         assert direction in (FORWARD, BACKWARD)
+        if type(self.pos) is tuple:
+            self.pos = list(self.pos)
 
         if self.facing in (NORTH, NORTH_WEST, NORTH_EAST):
-            self.pos[0] -= direction
+            self.pos[1] -= direction
         elif self.facing in (SOUTH, SOUTH_WEST, SOUTH_EAST):
-            self.pos[0] += direction
+            self.pos[1] += direction
 
         if self.facing in (WEST, NORTH_WEST, SOUTH_WEST):
-            self.pos[1] -= direction
+            self.pos[0] -= direction
         elif self.facing in (EAST, NORTH_EAST, SOUTH_EAST):
-            self.pos[1] += direction
+            self.pos[0] += direction
 
     def turn(self, direction):
         assert direction in (LEFT, RIGHT)
@@ -106,21 +104,23 @@ class Ship(Entity):
             ShipSystem("Holograms")
         ]
 
+        self.num_trails = 0
+
         for kwarg in kwargs:
             setattr(self, kwarg, kwargs[kwarg])
 
-    def _spawn_trail(self, pos=None):
-        if pos is None:
-            pos = self.pos
-        self.parent.entities.append(
-            Trail(
-                parent=self.parent,
-                colour=self.colour,
-                pos=pos,
-                facing=self.facing,
-                created_by=self,
-                ttl=self.trail_ttl
-            )
+    def _spawn_trail(self):
+        self.num_trails += 1
+        self.parent: Game
+        self.parent.create_entity(
+            values={
+                "type": "trail",
+                "name": "{} - {}".format(self.name, self.num_trails),
+                "colour": self.colour,
+                "pos": list(self.pos),
+                "direction": int(self.facing),
+            },
+            source=self.name
         )
 
     def _spawn_debris(self, pos=None):
@@ -183,8 +183,7 @@ class SystemModifier:
 
 
 class Trail(Entity):
-    def __init__(self, **kwargs):
-        super().__init__(kwargs)
+    pass
 
 
 class Debris(Entity):
@@ -247,16 +246,23 @@ class Game:
 
     def handle_events(self):
         event: dict
-        for event in range(self.events_queue.qsize()):
-            print(self.events_queue.get())
+        for i in range(self.events_queue.qsize()):
+            event = self.events_queue.get()
+            print(event)
             if event["action"] == "create":
                 self.create_entity(event["value"], event["source"])
             elif event["action"] == "move":
-                self.move_entity(event["value"])
+                self.move_entity(
+                    event["value"]["entity_id"],
+                    event["value"]["direction"]
+                )
             elif event["action"] == "turn":
-                pass
+                self.turn_entity(
+                    event["value"]["entity_id"],
+                    event["value"]["direction"]
+                )
             elif event["action"] == "destroy":
-                self.destroy_entity(event["value"])
+                self.destroy_entity(event["value"]["entity_id"])
             elif event["action"] == "fire_weapon":
                 pass
             elif event["action"] == "undo":
@@ -264,8 +270,8 @@ class Game:
             else:
                 print("Unknown action.")
 
-    def destroy_entity(self, values):
-        e = self.get_entity(values["entity_id"])
+    def destroy_entity(self, entity_id):
+        e = self.get_entity(entity_id)
         if e is not None:
             e.destroy()
 
@@ -324,16 +330,16 @@ class Game:
         if new is not None:
             self.entities.append(new)
 
-    def move_entity(self, values):
-        e: Entity = self.get_entity(values["entity_id"])
+    def move_entity(self, entity_id, direction):
+        e: Entity = self.get_entity(entity_id)
         if e is not None:
-            e.move(values["direction"])
+            e.move(direction)
 
-    def turn_entity(self, values):
-        e: Entity = self.get_entity(values["entity_id"])
+    def turn_entity(self, entity_id, direction):
+        e: Entity = self.get_entity(entity_id)
         if e is not None:
-            e.turn(values["direction"])
-        
+            e.turn(direction)
+
     def get_state(self):
         return {"entities": self.entities}
 
@@ -437,9 +443,10 @@ class ServerCommunicator:
                         logging.warning("Client {} sent a message of invalid action.".format(peer_name))
                         run = False
                         continue
-                except KeyError:
+                except KeyError as e:
                     con.close()
                     self._connection_sockets.remove(con)
+                    print(e)
                     logging.warning("KeyError in received data.".format(peer_name))
                     run = False
                     continue
@@ -453,6 +460,7 @@ class ServerCommunicator:
 
     def send_data(self, con, data):
         raw_data = json.dumps(make_json_friendly(data)).encode()
+        print(len(raw_data))
         con.send(raw_data)
 
 
@@ -476,8 +484,10 @@ class ClientCommunicator(socket.socket):
         self.object_send(
             {
                 "com_type": "event",
-                "action": action,
-                "value": value
+                "data": {
+                    "action": action,
+                    "value": value
+                }
             }
         )
 

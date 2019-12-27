@@ -9,10 +9,6 @@ import wx.adv
 import wx.lib.scrolledpanel as scrolled
 
 
-OBJECT_BUTTON_ID = 98765
-GRID_SIZE = 20
-
-
 class EntityButton(wx.Button):
     def __init__(self, *args, entity_id, **kwargs):
         super().__init__(*args, **kwargs)
@@ -20,98 +16,89 @@ class EntityButton(wx.Button):
 
 
 class MapPanel(wx.Window):
-    """Draw a line to a panel."""
-
     def __init__(self, parent, size):
         self.parent = parent
         super().__init__(parent=parent, size=size)
         self.Bind(wx.EVT_PAINT, self.re_draw)
-        self.cell_size = 10
+        self.background = wx.StaticBitmap(
+            self,
+            bitmap=load_bitmap(GRID_SPRITE),
+            pos=(0, 0),
+            size=(-1, -1)
+        )
         self.bitmaps = {}
+        self.states = {}
+        self.previous_cell_size = 0
 
     def re_draw(self, event=None):
-        self.Refresh(True)
-        dc = wx.PaintDC(self)
-        dc.Clear()
-
-        size = [s - 2 for s in self.GetSize()]
-        self.cell_size = size[0] / (GRID_SIZE + 1)
-
-        dc.SetFont(
-            wx.Font(
-                int(self.cell_size * 0.4),
-                wx.FONTFAMILY_DEFAULT,
-                wx.FONTSTYLE_NORMAL,
-                wx.FONTWEIGHT_NORMAL,
-                False
+        size = self.GetSize()
+        self.background.SetSize(size)
+        self.background.SetBitmap(
+            scale_bitmap(
+                load_bitmap(GRID_SPRITE),
+                size[0],
+                size[1]
             )
         )
-        dc.SetTextForeground(GREEN)
-        dc.SetTextBackground(BLACK)
-
-        dc.SetPen(wx.Pen(GREEN))
-        for p in range(GRID_SIZE + 1):
-            pos = self.cell_size * (p + 1)
-            dc.DrawLine(pos, self.cell_size, pos, size[1])
-            dc.DrawLine(self.cell_size, pos, size[0], pos)
-            if p > 0:
-                num_size = dc.GetTextExtent(str(p))
-                letter_size = dc.GetTextExtent(chr(64 + p))
-                dc.DrawText(
-                    str(p),
-                    (self.cell_size * p) + ((self.cell_size - num_size.GetWidth()) / 2),
-                    (self.cell_size - num_size.GetHeight()) * 0.75,
-                )
-                dc.DrawText(
-                    chr(64 + p),
-                    (self.cell_size - letter_size.GetWidth()) * 0.75,
-                    (self.cell_size * p) + (self.cell_size - letter_size.GetHeight()) / 2,
-                )
         self.refresh_bitmaps()
 
     def refresh_bitmaps(self):
+        cell_size = self.background.GetSize()[0] / 21
         entities = self.parent.GetParent().entities
-        current_ids = [e.entity_id for e in entities]
-        to_go = []
-        for b in self.bitmaps:
-            if b not in current_ids:
-                to_go.append(b)
-        for tg in to_go:
-            self.bitmaps[tg].Destroy()
-            self.bitmaps.pop(tg)
+
+        done = []
+
         for e in entities:
             e: Entity
-            if e.entity_id not in self.bitmaps.keys():
-                bmp = load_bitmap(get_sprite_path(e.type_name.lower(), e.colour.lower()))
-                bmp = scale_bitmap(bmp, self.cell_size, self.cell_size, e.facing)
-                self.bitmaps[e.entity_id] = {
-                    "bmp": wx.StaticBitmap(
-                        self,
-                        bitmap=bmp,
-                        pos=(
-                            (self.cell_size * e.pos[0]) - ((bmp.GetWidth() - self.cell_size) / 2),
-                            (self.cell_size * e.pos[1]) - ((bmp.GetHeight() - self.cell_size) / 2)
-                        )
-                    ),
-                    "prior_direction": e.facing
-                }
-            else:
-                if self.bitmaps[e.entity_id]["prior_direction"] != e.facing:
-                    self.bitmaps[e.entity_id]["bmp"].SetBitmap(
+            done.append(e.entity_id)
+            pos = ((cell_size * (e.pos[0] + 1)) + 3, (cell_size * (e.pos[1] + 1)) + 3)
+            if e.entity_id in self.bitmaps:
+                if cell_size != self.previous_cell_size or e.facing != self.states[e.entity_id]["facing"] or list(e.pos) != self.states[e.entity_id]["pos"]:
+                    bmp: wx.StaticBitmap = self.bitmaps[e.entity_id]
+                    bmp.SetBitmap(
                         scale_bitmap(
-                            self.bitmaps[e.entity_id]["bmp"].GetBitmap(),
-                            self.cell_size,
-                            self.cell_size,
+                            load_bitmap(get_sprite_path(
+                                e.type_name.lower(),
+                                e.colour.lower()
+                                )
+                            ),
+                            cell_size,
+                            cell_size,
                             e.facing
                         )
                     )
-                    self.bitmaps[e.entity_id]["prior_direction"] = e.facing
-                self.bitmaps[e.entity_id]["bmp"].SetPosition(
-                    (
-                        (self.cell_size * e.pos[0]) - ((self.bitmaps[e.entity_id]["bmp"].GetBitmap().GetWidth() - self.cell_size) / 2),
-                        (self.cell_size * e.pos[1]) - ((self.bitmaps[e.entity_id]["bmp"].GetBitmap().GetHeight() - self.cell_size) / 2)
-                    )
+                    bmp.SetPosition(pos)
+                    bmp.SetSize((cell_size - 3, cell_size - 3))
+                    self.states[e.entity_id] = {
+                        "facing": e.facing,
+                        "pos": list(e.pos)
+                    }
+            else:
+                self.bitmaps[e.entity_id] = wx.StaticBitmap(
+                    self.background,
+                    bitmap=scale_bitmap(
+                        load_bitmap(get_sprite_path(
+                            e.type_name.lower(),
+                            e.colour.lower()
+                        )
+                        ),
+                        cell_size,
+                        cell_size,
+                        e.facing
+                    ),
+                    pos=pos,
+                    size=(cell_size - 3, cell_size - 3)
                 )
+                self.states[e.entity_id] = {
+                    "facing": e.facing,
+                    "pos": list(e.pos)
+                }
+        self.previous_cell_size = cell_size
+
+        for b in list(self.bitmaps.keys()):
+            if b not in done:
+                p = self.bitmaps.pop(b)
+                p = self.states.pop(b)
 
 
 class Manager(wx.Frame):
@@ -150,11 +137,12 @@ class Manager(wx.Frame):
         )
         self.map_panel.SetBackgroundColour(BLACK)
 
-        control_panel_width = 300
+        button_panel_width = 200
+        control_panel_width = 200
 
         self.entity_buttons_window = scrolled.ScrolledPanel(
             self,
-            size=(control_panel_width, -1),
+            size=(button_panel_width, -1),
             style=wx.TAB_TRAVERSAL | wx.SUNKEN_BORDER,
         )
 
@@ -164,19 +152,20 @@ class Manager(wx.Frame):
         self.entity_buttons_window.SetAutoLayout(True)
         self.entity_buttons_window.SetupScrolling(False, True)
 
+        # Controls
+
         controls_sizer = wx.BoxSizer(wx.VERTICAL)
         self.control_panel = wx.Panel(
             self,
             size=(control_panel_width, -1)
         )
 
-        # Controls
         button_height = 40
-        up_button = wx.Button(self.control_panel, ID_UP, size=(-1, button_height), label="˄")
-        left_button = wx.Button(self.control_panel, ID_LEFT, size=(-1, button_height), label="˂")
-        right_button = wx.Button(self.control_panel, ID_RIGHT, size=(-1, button_height), label="˃")
-        down_button = wx.Button(self.control_panel, ID_DOWN, size=(-1, button_height), label="˅")
-        delete_button = wx.Button(self.control_panel, ID_DELETE, size=(-1, button_height), label="Delete")
+        up_button = wx.Button(self.control_panel, ID_UP, size=(control_panel_width / 3, button_height), label="˄")
+        left_button = wx.Button(self.control_panel, ID_LEFT, size=(control_panel_width / 3, button_height), label="˂")
+        right_button = wx.Button(self.control_panel, ID_RIGHT, size=(control_panel_width / 3, button_height), label="˃")
+        down_button = wx.Button(self.control_panel, ID_DOWN, size=(control_panel_width / 3, button_height), label="˅")
+        delete_button = wx.Button(self.control_panel, ID_DELETE, size=(control_panel_width / 3, button_height), label="Delete")
         delete_button.SetBackgroundColour((220, 0, 0))
         delete_button.SetForegroundColour((255, 255, 255))
 
@@ -217,12 +206,13 @@ class Manager(wx.Frame):
             0,
             wx.EXPAND
         )
-        arrows_sizer.Layout()
+
         # End Controls
 
         self.control_panel.Disable()
 
         self.control_panel.SetSizer(controls_sizer)
+        controls_sizer.Layout()
 
         main_sizer.Add(
             self.map_bg_panel,
@@ -266,6 +256,10 @@ class Manager(wx.Frame):
         self.on_resize()
         self.update_entity_buttons()
         self.map_panel.refresh_bitmaps()
+        if self.selected_object is None:
+            self.control_panel.Disable()
+        else:
+            self.control_panel.Enable()
 
     def update_entity_buttons(self):
         current_ids = [e.entity_id for e in self.entities]
@@ -324,7 +318,14 @@ class Manager(wx.Frame):
         elif button_id == ID_LEFT:
             self.move_object(3)
         else:
-            pass
+            if hasattr(e.GetEventObject(), "entity_id"):
+                target = e.GetEventObject().entity_id
+                for e in self.entities:
+                    if e.entity_id == target:
+                        self.selected_object = e
+                        break
+                else:
+                    self.selected_object = None
 
     def on_close(self, e=None):
         self.running = False
@@ -360,7 +361,6 @@ class Manager(wx.Frame):
             e.Skip()
 
     def move_object(self, direction):
-        print("Move", direction)
         if self.selected_object is None:
             return
 
@@ -422,7 +422,7 @@ def scale_bitmap(bitmap, width, height, rotation=0):
     new_w = max([width / 2, 1])
     new_h = max([height / 2, 1])
     image = image.Rotate(
-        angle=math.radians(rotation * 45),
+        angle=math.radians(rotation * -45),
         rotationCentre=(
             new_w,
             new_h

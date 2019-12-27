@@ -1,38 +1,49 @@
 {
     "com_type": "event",
-    "action": "create",
-    "value": {
-        "type": "ship" | "trail" | "debris" | "station,
-        "name": str,
-        "colour": "black" | "blue" | "green" | "red" | "white" | "yellow",
-        "pos": (int, int),
-        "direction": int 0-8,
-        "ttl": None | int
+    "data": {
+        "action": "create",
+        "value": {
+            "type": "ship" | "trail" | "debris" | "station,
+            "name": str,
+            "colour": "black" | "blue" | "green" | "red" | "white" | "yellow",
+            "pos": (int, int),
+            "direction": int 0-8,
+            "ttl": None | int
+        }
     }
 }
 
-{
-    "com_type": "event",
-    "action": "move",
-    "value": {
-        "entity_id": int,
-        "direction": 1 (FORWARD) | -1 (BACKWARD)
-    }
-}
 
 {
     "com_type": "event",
-    "action": "turn",
-    "value": {
-        "entity_id": int,
-        "direction": 1 (RIGHT) | -1 (LEFT)
+    "data": {
+        "action": "move",
+        "value": {
+            "entity_id": int,
+            "direction": 1 (FORWARD) | -1 (BACKWARD)
+        }
     }
 }
 
+
 {
     "com_type": "event",
-    "action": "destroy",
-    "value": {
-        "entity_id": int
+    "data": {
+        "action": "turn",
+        "value": {
+            "entity_id": int,
+            "direction": 1 (RIGHT) | -1 (LEFT)
+        }
+    }
+}
+
+
+{
+    "com_type": "event",
+    "data": {
+        "action": "destroy",
+        "value": {
+            "entity_id": int
+        }
     }
 }

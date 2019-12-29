@@ -54,12 +54,15 @@ class Entity:
         self.created_by = created_by
         if created_time is None:
             self.created_time = time.time()
+        else:
+            self.created_time = created_time
         self.ttl = ttl
 
     def destroy(self):
         self.parent.entities.remove(self)
 
     def move(self, direction=FORWARD):
+        print("Move")
         assert direction in (FORWARD, BACKWARD)
         if type(self.pos) is tuple:
             self.pos = list(self.pos)
@@ -79,7 +82,7 @@ class Entity:
         self.facing = DIRECTIONS[(DIRECTIONS.index(self.facing) + direction) % len(DIRECTIONS)]
 
     def tick(self):
-        if (self.ttl is not None) and (self.created_time + self.ttl >= time.time()):
+        if (self.ttl is not None) and (self.created_time + self.ttl <= time.time()):
             self.destroy()
 
     @property
@@ -286,7 +289,6 @@ class Game:
                 pos=values["pos"],
                 facing=values["direction"],
                 created_by=source,
-                created_time=datetime.datetime.now(),
                 ttl=None
             )
         elif values["type"] == "debris":
@@ -298,7 +300,6 @@ class Game:
                 pos=values["pos"],
                 facing=values["direction"],
                 created_by=source,
-                created_time=datetime.datetime.now(),
                 ttl=values["ttl"]
             )
         elif values["type"] == "trail":
@@ -310,8 +311,7 @@ class Game:
                 pos=values["pos"],
                 facing=values["direction"],
                 created_by=source,
-                created_time=datetime.datetime.now(),
-                ttl=None
+                ttl=5
             )
         elif values["station"] == "station":
             new = Station(
@@ -322,7 +322,6 @@ class Game:
                 pos=values["pos"],
                 facing=values["direction"],
                 created_by=source,
-                created_time=datetime.datetime.now(),
                 ttl=None
             )
         else:
@@ -401,7 +400,7 @@ class ServerCommunicator:
         try:
             run = True
             while run:
-                msg_data = con.recv(2048)
+                msg_data = con.recv(65536)
 
                 if msg_data == b"":
                     logging.info("Client {} closed its connection.".format(peer_name))
@@ -460,7 +459,6 @@ class ServerCommunicator:
 
     def send_data(self, con, data):
         raw_data = json.dumps(make_json_friendly(data)).encode()
-        print(len(raw_data))
         con.send(raw_data)
 
 
@@ -470,7 +468,7 @@ class ClientCommunicator(socket.socket):
         super().send(raw)
 
     def object_recv(self):
-        received_bytes = self.recv(2048)
+        received_bytes = self.recv(65536)
         if received_bytes == b"":
             return
         else:

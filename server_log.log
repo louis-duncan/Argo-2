@@ -739,3 +739,159 @@
 27/12/2019 01:14:00 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
 27/12/2019 01:15:46 AM - INFO: New connection received from ('127.0.0.1', 58117).
 27/12/2019 01:16:17 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 04:28:20 PM - INFO: New connection received from ('127.0.0.1', 50183).
+27/12/2019 04:31:14 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 04:34:22 PM - INFO: New connection received from ('127.0.0.1', 50470).
+27/12/2019 10:53:13 PM - INFO: New connection received from ('127.0.0.1', 63891).
+27/12/2019 10:53:40 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 10:57:14 PM - INFO: New connection received from ('127.0.0.1', 64100).
+27/12/2019 10:57:28 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 10:58:20 PM - INFO: New connection received from ('127.0.0.1', 64308).
+27/12/2019 10:59:27 PM - INFO: New connection received from ('127.0.0.1', 64377).
+27/12/2019 11:01:02 PM - INFO: New connection received from ('127.0.0.1', 64445).
+27/12/2019 11:01:26 PM - INFO: New connection received from ('127.0.0.1', 64450).
+27/12/2019 11:02:15 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:02:23 PM - INFO: New connection received from ('127.0.0.1', 64517).
+27/12/2019 11:02:33 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:02:34 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:02:35 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:02:35 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:03:39 PM - INFO: New connection received from ('127.0.0.1', 64596).
+27/12/2019 11:04:21 PM - INFO: New connection received from ('127.0.0.1', 64602).
+27/12/2019 11:04:38 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:04:40 PM - INFO: New connection received from ('127.0.0.1', 64607).
+27/12/2019 11:05:43 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:06:20 PM - INFO: New connection received from ('127.0.0.1', 64613).
+27/12/2019 11:07:17 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:07:37 PM - INFO: New connection received from ('127.0.0.1', 64682).
+27/12/2019 11:09:44 PM - INFO: New connection received from ('127.0.0.1', 64753).
+27/12/2019 11:10:00 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:10:02 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:10:03 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:10:30 PM - INFO: New connection received from ('127.0.0.1', 64821).
+27/12/2019 11:10:59 PM - INFO: New connection received from ('127.0.0.1', 64888).
+27/12/2019 11:11:27 PM - INFO: New connection received from ('127.0.0.1', 64955).
+27/12/2019 11:12:24 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:12:25 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:12:26 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:13:03 PM - INFO: New connection received from ('127.0.0.1', 65035).
+27/12/2019 11:13:28 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:13:31 PM - INFO: New connection received from ('127.0.0.1', 65102).
+27/12/2019 11:15:24 PM - INFO: New connection received from ('127.0.0.1', 65172).
+27/12/2019 11:15:24 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:15:25 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:15:34 PM - INFO: New connection received from ('127.0.0.1', 65305).
+27/12/2019 11:16:14 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:16:19 PM - INFO: New connection received from ('127.0.0.1', 65374).
+27/12/2019 11:16:37 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:16:49 PM - INFO: New connection received from ('127.0.0.1', 65507).
+27/12/2019 11:16:56 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:17:20 PM - INFO: New connection received from ('127.0.0.1', 49324).
+27/12/2019 11:17:47 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:18:13 PM - INFO: New connection received from ('127.0.0.1', 49524).
+27/12/2019 11:18:36 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:18:53 PM - INFO: New connection received from ('127.0.0.1', 49606).
+27/12/2019 11:19:05 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:20:26 PM - INFO: New connection received from ('127.0.0.1', 49814).
+27/12/2019 11:20:51 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:21:48 PM - INFO: New connection received from ('127.0.0.1', 49950).
+27/12/2019 11:23:15 PM - INFO: New connection received from ('127.0.0.1', 50086).
+27/12/2019 11:23:26 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:25:03 PM - INFO: New connection received from ('127.0.0.1', 50222).
+27/12/2019 11:25:54 PM - INFO: New connection received from ('127.0.0.1', 50290).
+27/12/2019 11:26:34 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:26:35 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:38:24 PM - INFO: New connection received from ('127.0.0.1', 50502).
+27/12/2019 11:38:54 PM - INFO: New connection received from ('127.0.0.1', 50569).
+27/12/2019 11:41:36 PM - INFO: New connection received from ('127.0.0.1', 50639).
+27/12/2019 11:42:47 PM - INFO: New connection received from ('127.0.0.1', 50709).
+27/12/2019 11:44:08 PM - INFO: New connection received from ('127.0.0.1', 50789).
+27/12/2019 11:44:25 PM - INFO: New connection received from ('127.0.0.1', 50856).
+27/12/2019 11:44:30 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:44:31 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:44:31 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:44:32 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:44:32 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:44:32 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:48:11 PM - INFO: New connection received from ('127.0.0.1', 51070).
+27/12/2019 11:48:58 PM - INFO: New connection received from ('127.0.0.1', 51145).
+27/12/2019 11:54:28 PM - INFO: New connection received from ('127.0.0.1', 51353).
+27/12/2019 11:54:37 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:57:26 PM - INFO: New connection received from ('127.0.0.1', 51422).
+27/12/2019 11:57:51 PM - INFO: New connection received from ('127.0.0.1', 51491).
+27/12/2019 11:58:07 PM - INFO: New connection received from ('127.0.0.1', 51561).
+27/12/2019 11:58:11 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:58:12 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:58:13 PM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+27/12/2019 11:58:39 PM - INFO: New connection received from ('127.0.0.1', 51629).
+28/12/2019 12:01:16 AM - INFO: New connection received from ('127.0.0.1', 51710).
+28/12/2019 12:03:07 AM - INFO: New connection received from ('127.0.0.1', 51780).
+28/12/2019 12:03:22 AM - INFO: New connection received from ('127.0.0.1', 51848).
+28/12/2019 12:03:25 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:03:26 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:03:27 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:03:27 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:03:41 AM - INFO: New connection received from ('127.0.0.1', 51982).
+28/12/2019 12:04:08 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:04:08 AM - INFO: New connection received from ('127.0.0.1', 52052).
+28/12/2019 12:04:41 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:16:39 AM - INFO: New connection received from ('127.0.0.1', 53004).
+28/12/2019 12:18:03 AM - INFO: New connection received from ('127.0.0.1', 53073).
+28/12/2019 12:18:27 AM - INFO: New connection received from ('127.0.0.1', 53141).
+28/12/2019 12:18:38 AM - INFO: New connection received from ('127.0.0.1', 53209).
+28/12/2019 12:18:50 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:18:51 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:18:52 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:18:52 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:20:05 AM - INFO: New connection received from ('127.0.0.1', 53283).
+28/12/2019 12:22:42 AM - INFO: New connection received from ('127.0.0.1', 53354).
+28/12/2019 12:22:53 AM - INFO: New connection received from ('127.0.0.1', 53423).
+28/12/2019 12:23:24 AM - INFO: New connection received from ('127.0.0.1', 53491).
+28/12/2019 12:24:12 AM - INFO: New connection received from ('127.0.0.1', 53559).
+28/12/2019 12:25:05 AM - INFO: New connection received from ('127.0.0.1', 53628).
+28/12/2019 12:25:17 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:25:18 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:25:19 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:25:19 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:25:19 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:25:20 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:29:19 AM - INFO: New connection received from ('127.0.0.1', 53840).
+28/12/2019 12:31:14 AM - INFO: New connection received from ('127.0.0.1', 53910).
+28/12/2019 12:31:57 AM - INFO: New connection received from ('127.0.0.1', 53977).
+28/12/2019 12:34:57 AM - INFO: New connection received from ('127.0.0.1', 54074).
+28/12/2019 12:34:58 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:34:59 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:34:59 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:35:32 AM - INFO: New connection received from ('127.0.0.1', 54141).
+28/12/2019 12:36:11 AM - INFO: New connection received from ('127.0.0.1', 54209).
+28/12/2019 12:36:19 AM - INFO: New connection received from ('127.0.0.1', 54276).
+28/12/2019 12:36:34 AM - INFO: New connection received from ('127.0.0.1', 54348).
+28/12/2019 12:39:48 AM - INFO: New connection received from ('127.0.0.1', 54552).
+28/12/2019 12:40:30 AM - INFO: New connection received from ('127.0.0.1', 54622).
+28/12/2019 12:40:43 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:40:43 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:40:44 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:40:44 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:40:44 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:40:44 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:40:45 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:41:41 AM - INFO: New connection received from ('127.0.0.1', 54693).
+28/12/2019 12:41:47 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:41:54 AM - INFO: New connection received from ('127.0.0.1', 54831).
+28/12/2019 12:46:02 AM - INFO: New connection received from ('127.0.0.1', 54918).
+28/12/2019 12:46:16 AM - INFO: New connection received from ('127.0.0.1', 54986).
+28/12/2019 12:46:30 AM - INFO: New connection received from ('127.0.0.1', 55054).
+28/12/2019 12:46:40 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:46:41 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:46:41 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:46:41 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:54:23 AM - INFO: New connection received from ('127.0.0.1', 55223).
+28/12/2019 12:56:12 AM - INFO: New connection received from ('127.0.0.1', 55294).
+28/12/2019 12:56:33 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:56:35 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:56:38 AM - INFO: New connection received from ('127.0.0.1', 55427).
+28/12/2019 12:56:44 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:57:37 AM - INFO: New connection received from ('127.0.0.1', 55495).
+28/12/2019 12:57:41 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.
+28/12/2019 12:58:50 AM - INFO: New connection received from ('127.0.0.1', 55572).
+28/12/2019 12:59:32 AM - WARNING: Exception "<class 'ConnectionResetError'>" occurred in TCP/IP thread.

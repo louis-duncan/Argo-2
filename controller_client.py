@@ -43,7 +43,7 @@ class MapPanel(wx.Window):
         self.refresh_bitmaps()
 
     def refresh_bitmaps(self):
-        cell_size = self.background.GetSize()[0] / 21
+        cell_size = round(self.background.GetSize()[0] / 21, 5)
         entities = self.parent.GetParent().entities
 
         done = []
@@ -73,6 +73,7 @@ class MapPanel(wx.Window):
                         "facing": e.facing,
                         "pos": list(e.pos)
                     }
+
             else:
                 self.bitmaps[e.entity_id] = wx.StaticBitmap(
                     self.background,
@@ -93,12 +94,23 @@ class MapPanel(wx.Window):
                     "facing": e.facing,
                     "pos": list(e.pos)
                 }
-        self.previous_cell_size = cell_size
+
+            if not (type(e) in (Ship, Station)):
+                bmp: wx.StaticBitmap = self.bitmaps[e.entity_id]
+                if self.parent.GetParent().is_ship_at_pos(e.pos):
+                    if bmp.IsShown():
+                        bmp.Hide()
+                else:
+                    if not bmp.IsShown():
+                        bmp.Show()
 
         for b in list(self.bitmaps.keys()):
             if b not in done:
                 p = self.bitmaps.pop(b)
+                p.Destroy()
                 p = self.states.pop(b)
+
+        self.previous_cell_size = cell_size
 
 
 class Manager(wx.Frame):
@@ -116,6 +128,8 @@ class Manager(wx.Frame):
         self.selected_object = None
         self.entities = []
         self.entity_buttons = []
+
+        self.SetBackgroundColour((255, 255, 255))
 
         self.con = create_client_connection(SERVER_ADDR)
 
@@ -137,35 +151,136 @@ class Manager(wx.Frame):
         )
         self.map_panel.SetBackgroundColour(BLACK)
 
-        button_panel_width = 200
-        control_panel_width = 200
+        button_panel_width = 250
+        control_panel_width = 250
+
+        button_height = 40
+
+        # Selectors
+        selectors_panel = wx.Panel(self)
+        selectors_sizer = wx.BoxSizer(wx.VERTICAL)
+
+        check_box_sizer = wx.GridBagSizer(5, 5)
+        self.show_ships = wx.CheckBox(
+            selectors_panel,
+            label="Ships"
+        )
+        self.show_ships.SetValue(True)
+        check_box_sizer.Add(
+            self.show_ships,
+            pos=(0, 0)
+        )
+        self.show_stations = wx.CheckBox(
+            selectors_panel,
+            label="Stations"
+        )
+        check_box_sizer.Add(
+            self.show_stations,
+            pos=(0, 1)
+        )
+        self.show_trails = wx.CheckBox(
+            selectors_panel,
+            label="Trails"
+        )
+        check_box_sizer.Add(
+            self.show_trails,
+            pos=(1, 0)
+        )
+        self.show_debris = wx.CheckBox(
+            selectors_panel,
+            label="Debris"
+        )
+        check_box_sizer.Add(
+            self.show_debris,
+            pos=(1, 1)
+        )
+        check_box_sizer.Add(
+            wx.Button(
+                selectors_panel,
+                ID_ALL,
+                label="All"
+            ),
+            pos=(2, 0)
+        )
+        check_box_sizer.Add(
+            wx.Button(
+                selectors_panel,
+                ID_NONE,
+                label="None"
+            ),
+            pos=(2, 1)
+        )
+
+        selectors_sizer.Add(
+            check_box_sizer,
+            0,
+            wx.EXPAND | wx.ALL,
+            5
+        )
 
         self.entity_buttons_window = scrolled.ScrolledPanel(
-            self,
+            selectors_panel,
             size=(button_panel_width, -1),
             style=wx.TAB_TRAVERSAL | wx.SUNKEN_BORDER,
         )
-
         self.entity_buttons_window.SetBackgroundColour((255, 255, 255))
         self.entity_buttons_sizer = wx.BoxSizer(wx.VERTICAL)
         self.entity_buttons_window.SetSizer(self.entity_buttons_sizer)
         self.entity_buttons_window.SetAutoLayout(True)
         self.entity_buttons_window.SetupScrolling(False, True)
 
-        # Controls
+        selectors_sizer.Add(
+            self.entity_buttons_window,
+            1,
+            wx.EXPAND
+        )
 
+        selectors_sizer.Add(
+            wx.StaticText(
+                selectors_panel,
+                label="Selected:"
+            ),
+            0,
+            wx.EXPAND | wx.ALL,
+            3
+        )
+
+        self.selected_icon = wx.StaticBitmap(
+            selectors_panel,
+            size=(40, 40)
+        )
+        selectors_sizer.Add(
+            self.selected_icon,
+            0,
+            wx.RESERVE_SPACE_EVEN_IF_HIDDEN | wx.ALL,
+            3
+        )
+        create_button = wx.Button(
+            selectors_panel,
+            label="Create Entity",
+            size=(-1, button_height)
+        )
+        create_button.SetBackgroundColour((0, 200, 0))
+        create_button.SetForegroundColour((255, 255, 255))
+        selectors_sizer.Add(
+            create_button,
+            0,
+            wx.EXPAND
+        )
+        selectors_panel.SetSizer(selectors_sizer)
+
+        # Controls
         controls_sizer = wx.BoxSizer(wx.VERTICAL)
         self.control_panel = wx.Panel(
             self,
             size=(control_panel_width, -1)
         )
 
-        button_height = 40
         up_button = wx.Button(self.control_panel, ID_UP, size=(control_panel_width / 3, button_height), label="˄")
         left_button = wx.Button(self.control_panel, ID_LEFT, size=(control_panel_width / 3, button_height), label="˂")
         right_button = wx.Button(self.control_panel, ID_RIGHT, size=(control_panel_width / 3, button_height), label="˃")
         down_button = wx.Button(self.control_panel, ID_DOWN, size=(control_panel_width / 3, button_height), label="˅")
-        delete_button = wx.Button(self.control_panel, ID_DELETE, size=(control_panel_width / 3, button_height), label="Delete")
+        delete_button = wx.Button(self.control_panel, ID_DELETE, size=(-1, button_height), label="Delete")
         delete_button.SetBackgroundColour((220, 0, 0))
         delete_button.SetForegroundColour((255, 255, 255))
 
@@ -220,7 +335,7 @@ class Manager(wx.Frame):
             wx.EXPAND
         )
         main_sizer.Add(
-            self.entity_buttons_window,
+            selectors_panel,
             0,
             wx.EXPAND
         )
@@ -239,8 +354,14 @@ class Manager(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.button_press)
         self.Bind(wx.EVT_CLOSE, self.on_close)
         self.Bind(wx.EVT_TIMER, self.timer_handler)
+        self.map_panel.background.Bind(wx.EVT_LEFT_UP, self.map_click)
 
         self.Show(True)
+
+    def map_click(self, e=None):
+        e: wx.MouseEvent
+        print("Click")
+        print(e.GetPosition())
 
     def timer_handler(self, e=None):
         if self.con is None:
@@ -256,10 +377,8 @@ class Manager(wx.Frame):
         self.on_resize()
         self.update_entity_buttons()
         self.map_panel.refresh_bitmaps()
-        if self.selected_object is None:
-            self.control_panel.Disable()
-        else:
-            self.control_panel.Enable()
+        if self.selected_object is not None and not (self.selected_object.entity_id in [e.entity_id for e in self.entities]):
+            self.deselect_object()
 
     def update_entity_buttons(self):
         current_ids = [e.entity_id for e in self.entities]
@@ -303,8 +422,25 @@ class Manager(wx.Frame):
                     wx.EXPAND
                 )
                 self.entity_buttons.append(new)
+        for b in self.entity_buttons:
+            e_type = type(self.get_entity(b.entity_id))
+            if e_type is Ship and self.show_ships.GetValue():
+                b.Show()
+            elif e_type is Station and self.show_stations.GetValue():
+                b.Show()
+            elif e_type is Trail and self.show_trails.GetValue():
+                b.Show()
+            elif e_type is Debris and self.show_debris.GetValue():
+                b.Show()
+            else:
+                b.Hide()
         self.entity_buttons_sizer.Layout()
         self.Layout()
+
+    def get_entity(self, entity_id):
+        for e in self.entities:
+            if e.entity_id == entity_id:
+                return e
 
     def button_press(self, e: wx.Event):
         button_id = e.GetEventObject().GetId()
@@ -317,15 +453,42 @@ class Manager(wx.Frame):
             self.move_object(2)
         elif button_id == ID_LEFT:
             self.move_object(3)
+        elif button_id == ID_ALL:
+            self.set_check_boxes(True)
+        elif button_id == ID_NONE:
+            self.set_check_boxes(False)
         else:
             if hasattr(e.GetEventObject(), "entity_id"):
-                target = e.GetEventObject().entity_id
-                for e in self.entities:
-                    if e.entity_id == target:
-                        self.selected_object = e
-                        break
-                else:
-                    self.selected_object = None
+                self.select_object(e.GetEventObject().entity_id)
+
+    def set_check_boxes(self, state):
+        self.show_ships.SetValue(state)
+        self.show_stations.SetValue(state)
+        self.show_trails.SetValue(state)
+        self.show_debris.SetValue(state)
+
+    def select_object(self, target):
+        if self.selected_object is not None and self.selected_object.entity_id == target:
+            self.deselect_object()
+        else:
+            for e in self.entities:
+                if e.entity_id == target:
+                    self.selected_object = e
+                    self.selected_icon.SetBitmap(
+                        scale_bitmap(
+                            load_bitmap(get_sprite_path(e.type_name.lower(), e.colour.lower())),
+                            self.selected_icon.GetSize()[0],
+                            self.selected_icon.GetSize()[1]
+                        )
+                    )
+                    self.selected_icon.Show()
+                    self.control_panel.Enable()
+                    break
+
+    def deselect_object(self):
+        self.selected_object = None
+        self.selected_icon.Hide()
+        self.control_panel.Disable()
 
     def on_close(self, e=None):
         self.running = False
@@ -361,6 +524,7 @@ class Manager(wx.Frame):
             e.Skip()
 
     def move_object(self, direction):
+        print("Move")
         if self.selected_object is None:
             return
 
@@ -391,7 +555,7 @@ class Manager(wx.Frame):
         self.con.send_update(
             action="destroy",
             value={
-                "entity_id": self.selected_object.entity
+                "entity_id": self.selected_object.entity_id
             }
         )
 
@@ -406,8 +570,16 @@ class Manager(wx.Frame):
             }
         )
 
+    def is_ship_at_pos(self, pos):
+        pos = tuple(pos)
+        for e in self.entities:
+            if type(e) is Ship and tuple(e.pos) == pos:
+                return True
+        return False
+
     def __del__(self):
         self.timer.Stop()
+
 
 
 def load_bitmap(path):
